@@ -1,0 +1,12 @@
+const express = require('express');
+const router = express.Router();
+const authController = require('./../controllers/authController');
+const fishController = require('./../controllers/fishController');
+router.get('/user', fishController.getFishess);
+router.get('/fish/:id', authController.protect, fishController.getFisheId);
+router.get('/', authController.protect, fishController.getFishes);
+router.delete('/:id', authController.protect, fishController.deleteFish);
+router.delete('/', authController.protect, fishController.deleteAllFish);
+router.patch('/:id', authController.protect, fishController.updateFish);
+router.post('/', authController.protect, fishController.addFish);
+module.exports = router;
