@@ -16,6 +16,7 @@ import { NotFoundComponent } from './component/not-found/not-found.component';
 // external libraries
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { ToastrModule } from 'ngx-toastr';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 //validattion
 import { AuthService } from './services/auth.service';
@@ -47,7 +48,8 @@ import { UserComponent } from './component/user/user.component';
     FormsModule,
     HttpClientModule,
     FlashMessagesModule.forRoot(),
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    Ng2SearchPipeModule
   ],
   providers: [ValidateService, AuthService],
   bootstrap: [AppComponent]

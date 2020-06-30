@@ -3,6 +3,7 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 import { ValidateService } from 'src/app/services/validate.service';
 import { AdminService } from 'src/app/services/admin.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin',
@@ -20,7 +21,8 @@ export class AdminComponent implements OnInit {
     private flashMessage: FlashMessagesService,
     private validateService: ValidateService,
     private adminService: AdminService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
   async showSuccess () {
     await this.flashMessage.show('Success', {
@@ -40,6 +42,9 @@ export class AdminComponent implements OnInit {
   }
 
   ngOnInit (): void {
+    if (!this.authService.loggedIn()) {
+      this.router.navigate(['/home']);
+    }
     this.adminService.getAdmins().subscribe(
       data => {
         this.admins = data;
