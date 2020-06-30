@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "fish"
+    }
+  },
+  "defaultProject": "fish",
+  "cli": {
+    "analytics": "597d7fdc-36b5-4b2e-8485-f880dac712ef"
+  }
 }
