@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 /**
- * @module Models.order
+ * module Models.order
  */
 
 const orderSchema = new mongoose.Schema({
@@ -53,6 +53,6 @@ const orderSchema = new mongoose.Schema({
     }
   ]
 });
-const Order = mongoose.model('Order', orderSchema);
+const Order = mongoose.model('Orders', orderSchema);
 
 exports.Order = Order;

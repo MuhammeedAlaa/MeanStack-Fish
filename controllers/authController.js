@@ -17,10 +17,19 @@ const createSendToken = (user, statusCode, res) => {
 };
 
 exports.signup = catchAsync(async (req, res, next) => {
-  // insert the user data in the database
-  console.log(req.body);
   // validate with JOI as a first layer of validation
-  await validate(req.body);
+  await validate(
+    _.pick(req.body, ['email', 'password', 'name', 'phone', 'passwordConfirm'])
+  );
+  const user = await Admin.findOne({ email: req.user.email }).select(
+    '+password'
+  );
+  if (
+    !user ||
+    !(await user.correctPassword(req.body.userPassword, user.password))
+  ) {
+    return next(new AppError('Incorrect password', 401));
+  }
 
   const newUser = await Admin.create({
     ..._.pick(req.body, [

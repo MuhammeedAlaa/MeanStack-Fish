@@ -12,8 +12,7 @@ exports.getFishes = catchAsync(async (req, res, next) => {
     .sort();
   const fishes = await api.query;
   res.status(200).json({
-    fishes,
-    user: req.user
+    fishes
   });
 });
 exports.getFishess = catchAsync(async (req, res, next) => {

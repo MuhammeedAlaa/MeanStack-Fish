@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 /**
- * @module Models.fish
+ * module Models.fish
  */
 
 const fishSchema = new mongoose.Schema({
@@ -20,6 +20,6 @@ const fishSchema = new mongoose.Schema({
     default: 'images/users/default.png'
   }
 });
-const Fish = mongoose.model('Fish', fishSchema);
+const Fish = mongoose.model('Fishs', fishSchema);
 
 exports.Fish = Fish;

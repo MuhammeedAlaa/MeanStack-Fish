@@ -10,8 +10,16 @@ exports.admin = catchAsync(async (req, res, next) => {
     .paginate()
     .sort();
   const admins = await api.query;
-  res.status(200).json({
-    admins,
-    id: req.user._id
+  res.status(200).json(admins);
+});
+
+exports.updateMe = catchAsync(async (req, res, next) => {
+  const filteredBody = _.pick(req.body, ['email', 'name', 'phone']);
+  // 3) Update user document
+  const updatedUser = await Admin.findByIdAndUpdate(req.user.id, filteredBody, {
+    new: true,
+    runValidators: true
   });
+
+  res.status(200).json(updatedUser);
 });

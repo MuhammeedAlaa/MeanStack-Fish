@@ -100,7 +100,7 @@ adminSchema.methods.signToken = function () {
   );
 };
 
-const Admin = mongoose.model('Admin', adminSchema);
+const Admin = mongoose.model('Admins', adminSchema);
 
 async function validateUser (user) {
   const schema = Joi.object({
