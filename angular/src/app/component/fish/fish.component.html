@@ -38,11 +38,10 @@
           <td scope="row">{{fish.price}} </td>
           <td><img src={{fish.img}} alt={{fish.type}} height="60" width="60"></td>
           <td scope="row">
-            <button class="btn btn-primary"
-              (click)="edit = true;  placeholder = 'edit'; type=fish.type; price= fish.price; editFish(fish)">Edit</button>
+            <button class="btn btn-primary" *ngIf="!edit" (click)="edit = true; editFish(fish);">Edit</button>
           </td>
           <td scope="row">
-            <button class="btn btn-danger" (click)="deleteFish(fish);">Delete</button>
+            <button class="btn btn-danger" *ngIf="!edit" (click)="deleteFish(fish);">Delete</button>
           </td>
         </tr>
       </tbody>
@@ -66,8 +65,8 @@
         Please enter fish price
       </div>
     </div>
-    <button class="btn btn-primary mr-4" (click)="editSaveFish();" [disabled]="!type || !price"> <i
-        class="glyphicon glyphicon-pencil">
+    <button class="btn btn-primary mr-4" (click)="editSaveFish(); edit = false; add = false;"
+      [disabled]="!type || !price"> <i class="glyphicon glyphicon-pencil">
       </i>Save
       change </button>
     <button class="btn btn-primary" (click)="edit = false; add = false;">

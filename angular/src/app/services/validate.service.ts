@@ -39,4 +39,12 @@ export class ValidateService {
   validatePhone (phone) {
     return /^01[0-2][0-9]{8}$/.test(phone);
   }
+  validateName (name) {
+    return /^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z]+[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z-_]*$/.test(
+      name
+    );
+  }
+  validateNumber (number) {
+    return /^\d+$/.test(number);
+  }
 }

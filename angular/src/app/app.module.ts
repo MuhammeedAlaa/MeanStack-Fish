@@ -10,7 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './component/login/login.component';
 import { RegistrationComponent } from './component/registration/registration.component';
-import { CreateOrderComponent } from './component/create-order/create-order.component';
+import { OrderComponent } from './component/order/order.component';
 import { NotFoundComponent } from './component/not-found/not-found.component';
 
 // external libraries
@@ -32,13 +32,14 @@ import { UserComponent } from './component/user/user.component';
     AppComponent,
     LoginComponent,
     RegistrationComponent,
-    CreateOrderComponent,
+    OrderComponent,
     NotFoundComponent,
     HomeComponent,
     NavbarComponent,
     FishComponent,
     AdminComponent,
-    UserComponent
+    UserComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,

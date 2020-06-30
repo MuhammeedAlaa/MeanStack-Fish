@@ -97,8 +97,6 @@ export class RegistrationComponent implements OnInit {
     // Register user
     this.authService.sendRegistrationUserRequest(user).subscribe(
       data => {
-        console.log(data);
-
         this.data = data;
         this.showSuccess();
         this.router.navigate(['/']);
