@@ -14,11 +14,11 @@ export class NavbarComponent implements OnInit {
     private router: Router,
     private flashMessage: FlashMessagesService,
     public _authService: AuthService
-  ) {
+  ) {}
+
+  ngOnInit (): void {
     this.name = localStorage.getItem('name');
   }
-
-  ngOnInit (): void {}
 
   onLogout () {
     this._authService.logout();

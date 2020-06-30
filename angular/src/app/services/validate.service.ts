@@ -10,7 +10,15 @@ export class ValidateService {
       user.name == undefined ||
       user.password == undefined ||
       user.passwordConfirm == undefined ||
-      user.email == undefined
+      user.email == undefined ||
+      user.phone == undefined
+    );
+  }
+  validateEdit (user) {
+    return !(
+      user.name == undefined ||
+      user.email == undefined ||
+      user.phone == undefined
     );
   }
   validateLogin (user) {

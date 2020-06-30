@@ -29,7 +29,9 @@ export class AuthService {
       user
     );
   }
-
+  name () {
+    return localStorage.getItem('name');
+  }
   storeClientData (token, user) {
     localStorage.setItem('token', token);
     localStorage.setItem('name', user.name);

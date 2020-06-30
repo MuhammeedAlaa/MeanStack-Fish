@@ -39,6 +39,9 @@ export class LoginComponent implements OnInit {
       cssClass: 'alert-danger',
       timeout: 6000
     });
+    if (errorMessage == 'Your token has expired! Please log in again.') {
+      this.authService.logout();
+    }
   }
 
   async loginUser () {

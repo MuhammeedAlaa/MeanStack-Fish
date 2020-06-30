@@ -20,7 +20,7 @@
     <ul class="navbar-nav">
       <a class="nav-link" *ngIf="!_authService.loggedIn()" routerLink="/login" routerLinkActive="active">Login</a>
       <h3 class="nav-label-active mr-4" style="color: #fff;" *ngIf="_authService.loggedIn()">
-        {{ name }}</h3>
+        {{ _authService.name() }}</h3>
       <a class="nav-link" *ngIf="_authService.loggedIn()" routerLink="/registration" routerLinkActive="active">Register
         new
         Admin</a>

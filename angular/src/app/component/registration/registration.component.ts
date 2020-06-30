@@ -43,6 +43,9 @@ export class RegistrationComponent implements OnInit {
       cssClass: 'alert-danger',
       timeout: 6000
     });
+    if (errorMessage == 'Your token has expired! Please log in again.') {
+      this.authService.logout();
+    }
   }
 
   registerAdmin () {
