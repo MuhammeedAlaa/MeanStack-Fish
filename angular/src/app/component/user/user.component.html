@@ -1,1 +1,77 @@
-<p>user works!</p>
+<div *ngIf="recipt">
+  <div class="clearfix mt-5">
+    <input class="form-control" type="text" name="search" [(ngModel)]="search" autocomplete="off"
+      placeholder="&#61442; Start searching for an order by phone or order number or region fish type order name ">
+  </div>
+  <div class="row mt-5 jumbotron bg-dark">
+    <div class="  col-md-4 mb-3" *ngFor="let order of orders | filter:search">
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">Order Number: #{{order.number}}</h5>
+          <p class="card-text">Name : {{order.name}}</p>
+          <p class="card-text">Total Price: {{order.total}}</p>
+          <a href="#" class="btn btn-success">View</a>
+        </div>
+        <div class="card-footer text-muted">
+          Region: {{order.region}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!------ Include the above in your HEAD tag ---------->
+<div class="container mt-5 center" style="margin-left: auto;
+  margin-right: auto;display: block;" *ngIf="!recipt">
+  <div class="row">
+    <div class="well col-xs-10 col-sm-10 col-md-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-3">
+      <div class="row">
+        <div class="col-xs-6 col-sm-6 col-md-6">
+          <address>
+            <strong>مازال الخير</strong><br>
+          </address>
+          <abbr title="Phone">01006641803</abbr>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 text-right">
+          <p><em>Date: 1st November, 2013</em></p>
+
+          <p><em>Receipt #:</em></p>
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="text-center">
+          <h1>ريسيت</h1>
+        </div>
+        <table class=" table table-hover">
+          <thead>
+            <tr>
+              <th>المنتج</th>
+              <th>العدد الكلي</th>
+              <th class="text-center">السعر</th>
+              <th class="text-center">السعر الكلي للنوع</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let order of orders">
+              <td class="col-md-9"><em>Lebanese Cabbage Salad</em></td>
+              <td class="col-md-1" style="text-align: center">1</td>
+              <td class="col-md-1 text-center">$8</td>
+              <td class="col-md-1 text-center">$8</td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td class="text-right">
+                <h4><strong>Total:&nbsp;</strong></h4>
+              </td>
+              <td class="text-center text-danger">
+                <h4 id="total"><strong>$31.53</strong></h4>
+              </td>
+            </tr>
+          </tbody>
+        </table><button type="button" class="btn btn-success btn-lg btn-block">PDF&nbsp;&nbsp;&nbsp;</button>
+        <button type="button" class="btn btn-success btn-lg btn-block">mark as delivered&nbsp;&nbsp;&nbsp;</button>
+      </div>
+    </div>
+  </div>
+</div>

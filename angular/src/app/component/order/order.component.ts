@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { OrderService } from 'src/app/services/order.service';
 import { ValidateService } from 'src/app/services/validate.service';
-import { Router } from '@angular/router';
 import * as $ from 'jquery';
 
 @Component({
@@ -30,8 +29,7 @@ export class OrderComponent implements OnInit {
   constructor (
     private flashMessage: FlashMessagesService,
     private orderService: OrderService,
-    private validateService: ValidateService,
-    private router: Router
+    private validateService: ValidateService
   ) {}
 
   ngOnInit (): void {
@@ -151,16 +149,19 @@ export class OrderComponent implements OnInit {
     );
   }
   deleteOrder () {
-    this.sent = false;
-    this.orderService.deleteOrder(this.user.order._id).subscribe(
-      data => {
-        this.showSuccess();
-        window.location.href = '/';
-      },
-      e => {
-        this.showErrors(e.error.msg || e.error.message);
-      }
-    );
+    let r = confirm('يرجي التاكيد علي مسح الاوردر');
+    if (r) {
+      this.sent = false;
+      this.orderService.deleteOrder(this.user.order._id).subscribe(
+        data => {
+          this.showSuccess();
+          window.location.href = '/';
+        },
+        e => {
+          this.showErrors(e.error.msg || e.error.message);
+        }
+      );
+    }
   }
   updatePrice (fish) {
     let value = $(`#${fish._id}`).val();
