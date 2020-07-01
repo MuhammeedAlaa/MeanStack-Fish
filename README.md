@@ -4,9 +4,8 @@
 
 An application for a fish shop delivery.
 
-[![GitHub License](https://img.shields.io/github/license/Etshawy1/ToDoApp-MEANStack?style=plastic)](https://img.shields.io/github/license/Etshawy1/ToDoApp-MEANStack?style=plastic)
-[![GitHub contributors](https://img.shields.io/github/contributors/Etshawy1/ToDoApp-MEANStack?style=plastic)](https://img.shields.io/github/contributors/Etshawy1/ToDoApp-MEANStack?style=plastic)
-[![GitHub stars](https://img.shields.io/github/stars/Etshawy1/ToDoApp-MEANStack?style=plastic)](https://github.com/Etshawy1/ToDoApp-MEANStack/stargazers?style=plastic)
+[![GitHub License](https://img.shields.io/github/license/MuhammeedAlaa/MeanStack-Fish?style=plastic)](https://img.shields.io/github/license/MuhammeedAlaa/MeanStack-Fish?style=plastic)
+[![GitHub contributors](https://img.shields.io/github/contributors/MuhammeedAlaa/MeanStack-Fish?style=plastic)](https://img.shields.io/github/contributors/MuhammeedAlaa/MeanStack-Fish?style=plastic)
 
 ## Tools used
 
@@ -37,7 +36,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 - This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.9.
 
-- building: navigate to `./angular-src` then Run `ng build` to build the project. The build artifacts will be stored in the `./public` directory. Use the `--prod` flag for a production build.
+- building: navigate to `./angular` then Run `ng build` to build the project. The build artifacts will be stored in the `./public` directory. Use the `--prod` flag for a production build.
 
 ### API documentation
 
