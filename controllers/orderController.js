@@ -57,7 +57,7 @@ exports.createOrder = catchAsync(async (req, res, next) => {
     ids,
     'New Order',
     `${order.name} made and order`,
-    '../public/assets/Notify.png'
+    'https://boxing-minister-63680.herokuapp.com/assets/Notify.png'
   );
 
   return res.status(201).json({
