@@ -30,6 +30,9 @@ module.exports = function (app) {
   app.use('/api/v1/users', adminRouter);
   app.use('/api/v1/fishes', fishRouter);
   app.use('/api/v1/orders', orderRouter);
+  app.get('*', (req, res, next) => {
+    res.sendFile(path.join(__dirname, '../public/index.html'));
+  });
 
   // if any link is visited and not mentioned above will go to that next middleware
   app.all('*', (req, res, next) => {
