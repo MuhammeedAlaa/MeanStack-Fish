@@ -57,7 +57,7 @@ exports.createOrder = catchAsync(async (req, res, next) => {
     ids,
     'New Order',
     `${order.name} made and order`,
-    'https://browntape.com/wp-content/uploads/2017/09/aa.png'
+    '../public/assets/Notify.png'
   );
 
   return res.status(201).json({
