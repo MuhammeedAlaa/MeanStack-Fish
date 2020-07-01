@@ -20,6 +20,8 @@ module.exports = function () {
       '<password>',
       process.env.DATABASE_PASSWORD
     );
+    console.log(DB);
+
     mongoose
       .connect(DB, {
         useNewUrlParser: true,
