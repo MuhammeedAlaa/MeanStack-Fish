@@ -1,18 +1,17 @@
 const admin = require('firebase-admin');
-const serviceAccount = require('./../fish.json');
+const serviceAccount = require('../fish.json');
 const { Admin } = require('../models/adminModel');
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: 'https://fish-94481.firebaseio.com'
 });
 
-exports.notify = async (users, ownerId, title, body, icon) => {
+exports.notify = async (users, title, body, icon) => {
   for (let index = 0; index < users.length; index++) {
     const user = await Admin.findById(users[index]);
     const payload = {
       data: {
         data: JSON.stringify({
-          from: ownerId,
           to: user._id
         })
       },

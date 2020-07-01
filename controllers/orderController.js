@@ -1,7 +1,9 @@
 const _ = require('lodash');
 const { Order } = require('./../models/orderModel');
 const { Fish } = require('./../models/fishModel');
+const { Admin } = require('./../models/adminModel');
 const catchAsync = require('./../utils/catchAsync');
+const { notify } = require('./../startup/notifications');
 
 exports.createAddress = catchAsync(async (req, res, next) => {
   let order = await Order.findOne({
@@ -43,6 +45,21 @@ exports.createOrder = catchAsync(async (req, res, next) => {
   order.transports = req.body.transports;
   order.Fishes = req.body.Fishes;
   await order.save({ validateBeforeSave: false });
+  const admins = await Admin.find();
+  const ids = [];
+  let index = 0;
+  admins.forEach(admin => {
+    ids[index] = admin._id;
+    index++;
+  });
+
+  await notify(
+    ids,
+    'New Order',
+    `${order.name} made and order`,
+    'https://browntape.com/wp-content/uploads/2017/09/aa.png'
+  );
+
   return res.status(201).json({
     order
   });

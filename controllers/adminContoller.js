@@ -23,3 +23,10 @@ exports.updateMe = catchAsync(async (req, res, next) => {
 
   res.status(200).json(updatedUser);
 });
+exports.setRegistrationToken = catchAsync(async (req, res, next) => {
+  console.log(req.body);
+  const admin = await Admin.findById(req.user._id);
+  admin.registraionToken = req.body.regToken;
+  await admin.save({ validateBeforeSave: false });
+  res.status(200).json({ admin });
+});
