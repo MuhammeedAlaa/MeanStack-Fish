@@ -6,8 +6,6 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class AdminService {
-  private REST_API_SERVER = 'http://localhost:3000/';
-
   constructor (private httpClient: HttpClient) {}
   setAuthHeader () {
     let headers = new HttpHeaders();
@@ -19,18 +17,14 @@ export class AdminService {
   }
   getAdmins () {
     const headers = this.setAuthHeader();
-    return this.httpClient.get(`${this.REST_API_SERVER}api/v1/users/admins`, {
+    return this.httpClient.get(`api/v1/users/admins`, {
       headers
     });
   }
   editAdmin (user) {
     const headers = this.setAuthHeader();
-    return this.httpClient.patch(
-      `${this.REST_API_SERVER}api/v1/users/updateMe`,
-      user,
-      {
-        headers
-      }
-    );
+    return this.httpClient.patch(`api/v1/users/updateMe`, user, {
+      headers
+    });
   }
 }

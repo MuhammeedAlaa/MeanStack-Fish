@@ -5,35 +5,22 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class OrderService {
-  private REST_API_SERVER = 'http://localhost:3000/';
-
   constructor (private httpClient: HttpClient) {}
 
   editOrderInfo (order) {
-    return this.httpClient.patch(
-      `${this.REST_API_SERVER}api/v1/users/addressupdate`,
-      order
-    );
+    return this.httpClient.patch(`api/v1/users/addressupdate`, order);
   }
 
   sendOrderInfo (order) {
-    return this.httpClient.post(
-      `${this.REST_API_SERVER}api/v1/users/address`,
-      order
-    );
+    return this.httpClient.post(`api/v1/users/address`, order);
   }
   getFishes () {
-    return this.httpClient.get(`${this.REST_API_SERVER}api/v1/fishes/user`);
+    return this.httpClient.get(`api/v1/fishes/user`);
   }
   sendOrder (order) {
-    return this.httpClient.patch(
-      `${this.REST_API_SERVER}api/v1/orders/sendorder`,
-      order
-    );
+    return this.httpClient.patch(`api/v1/orders/sendorder`, order);
   }
   deleteOrder (orderId) {
-    return this.httpClient.delete(
-      `${this.REST_API_SERVER}api/v1/orders/${orderId}`
-    );
+    return this.httpClient.delete(`api/v1/orders/${orderId}`);
   }
 }

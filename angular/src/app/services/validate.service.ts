@@ -48,5 +48,3 @@ export class ValidateService {
     return /^\d+$/.test(number);
   }
 }
-
-//BKWjVvHDSC2wVNTGrh3EZZFjTJtt_Qrpm25UrskuFmRFT62apSs_rRfP_NtEzIxPvUwBTtCwmPlGSi1eUkaWW8w
