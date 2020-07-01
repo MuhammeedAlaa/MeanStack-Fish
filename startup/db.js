@@ -21,6 +21,7 @@ module.exports = function () {
       process.env.DATABASE_PASSWORD
     );
     console.log(DB);
+    console.log(DB);
 
     mongoose
       .connect(DB, {
