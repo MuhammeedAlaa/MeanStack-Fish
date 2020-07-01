@@ -5,7 +5,7 @@
 An application for a fish shop delivery.
 
 [![GitHub License](https://img.shields.io/github/license/MuhammeedAlaa/MeanStack-Fish?style=plastic)](https://img.shields.io/github/license/MuhammeedAlaa/MeanStack-Fish?style=plastic)
-[![GitHub contributors](https://img.shields.io/github/contributors/MuhammedAlaa/MeanStack-Fish?style=plastic)](https://img.shields.io/github/contributors/MuhammedAlaa/MeanStack-Fish?style=plastic)
+[![GitHub contributors](https://img.shields.io/github/contributors/MuhammeedAlaa/MeanStack-Fish?style=plastic)](https://img.shields.io/github/contributors/MuhammeedAlaa/MeanStack-Fish?style=plastic)
 
 ## Tools used
 
