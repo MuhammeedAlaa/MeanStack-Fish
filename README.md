@@ -36,7 +36,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 - This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.9.
 
-- building: navigate to `./angular-src` then Run `ng build` to build the project. The build artifacts will be stored in the `./public` directory. Use the `--prod` flag for a production build.
+- building: navigate to `./angular` then Run `ng build` to build the project. The build artifacts will be stored in the `./public` directory. Use the `--prod` flag for a production build.
 
 ### API documentation
 
