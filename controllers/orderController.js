@@ -40,7 +40,7 @@ exports.createOrder = catchAsync(async (req, res, next) => {
       'appartmentNumber'
     ])
   });
-  order.totalPrice = req.body.totalPrice;
+  order.transports = req.body.transports;
   order.Fishes = req.body.Fishes;
   await order.save({ validateBeforeSave: false });
   return res.status(201).json({
@@ -48,16 +48,25 @@ exports.createOrder = catchAsync(async (req, res, next) => {
   });
 });
 exports.updateAddress = catchAsync(async (req, res, next) => {
-  const user = await Order.findById(req.body._id);
-  user.floor = req.body.floor;
-  user.name = req.body.name;
-  user.phone = req.body.phone;
-  user.buildingNumber = req.body.buildingNumber;
-  user.region = req.body.region;
-  user.appartmentNumber = req.body.appartmentNumber;
-  await user.save({ validateBeforeSave: false });
+  const order = await Order.findById(req.body._id);
+  order.floor = req.body.floor;
+  order.name = req.body.name;
+  order.phone = req.body.phone;
+  order.buildingNumber = req.body.buildingNumber;
+  order.region = req.body.region;
+  order.appartmentNumber = req.body.appartmentNumber;
+  await order.save({ validateBeforeSave: false });
   return res.status(201).json({
-    user
+    order
+  });
+});
+exports.sentOrder = catchAsync(async (req, res, next) => {
+  const order = await Order.findById(req.body._id);
+  order.sent = true;
+  order.sender = req.user.name;
+  await order.save({ validateBeforeSave: false });
+  return res.status(201).json({
+    order
   });
 });
 exports.deleteOrder = catchAsync(async (req, res, next) => {
@@ -81,6 +90,9 @@ exports.getAllUsers = catchAsync(async (req, res, next) => {
         appartmentNumber: order.appartmentNumber,
         id: order._id,
         number: number,
+        sender: order.sender,
+        sent: order.sent,
+        transports: order.transports,
         amount: order.Fishes[i].amount,
         fishId: order.Fishes[i].Fish
       };

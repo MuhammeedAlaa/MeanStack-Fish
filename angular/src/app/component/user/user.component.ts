@@ -42,11 +42,16 @@ export class UserComponent implements OnInit {
     }
   }
   sendOrder () {
-    console.log(this.user);
-
     this.userService.sendOrders(this.user._id).subscribe(
       data => {
-        console.log(data);
+        this.showSuccess();
+        let arr: any = [];
+        arr = Object.keys(data).map(key => {
+          arr.push({ [key]: data[key] });
+          return arr;
+        });
+        this.user.sent = arr[0][0].order.sent;
+        this.user.sender = arr[0][0].order.sender;
       },
       e => {
         this.showErrors(e.error.msg || e.error.message);

@@ -16,9 +16,9 @@ const orderSchema = new mongoose.Schema({
     minlength: 3,
     maxlength: 30
   },
-  totalPrice: {
+  transports: {
     type: String,
-    required: [true, 'please enter the fish totale price']
+    required: true
   },
   phone: {
     type: String,
@@ -43,6 +43,8 @@ const orderSchema = new mongoose.Schema({
     minlength: 1,
     maxlength: 30
   },
+  sender: String,
+  sent: Boolean,
   Fishes: [
     {
       Fish: {
