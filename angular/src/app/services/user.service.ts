@@ -26,4 +26,12 @@ export class UserService {
       }
     );
   }
+  sendOrders (orderId) {
+    const headers = this.setAuthHeader();
+    return this.httpClient.patch(
+      `${this.REST_API_SERVER}api/v1/orders/ordersent`,
+      { _id: orderId },
+      { headers }
+    );
+  }
 }

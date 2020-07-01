@@ -3,27 +3,32 @@ import { Component, OnInit } from '@angular/core';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
-
+import { DatePipe } from '@angular/common';
+import jspdf from 'jspdf';
+import html2canvas from 'html2canvas';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+  styleUrls: ['./user.component.css'],
+  providers: [DatePipe]
 })
 export class UserComponent implements OnInit {
   orders: any;
+  user: any;
   search: String;
   recipt: boolean = false;
   constructor (
     private flashMessage: FlashMessagesService,
     private userService: UserService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private datePipe: DatePipe
   ) {}
 
   showSuccess () {
     this.flashMessage.show('Success', {
       cssClass: 'alert-success',
-      timeout: 3000
+      timeout: 6000
     });
   }
 
@@ -35,6 +40,29 @@ export class UserComponent implements OnInit {
     if (errorMessage == 'Your token has expired! Please log in again.') {
       this.authService.logout();
     }
+  }
+  sendOrder () {
+    console.log(this.user);
+
+    this.userService.sendOrders(this.user._id).subscribe(
+      data => {
+        console.log(data);
+      },
+      e => {
+        this.showErrors(e.error.msg || e.error.message);
+      }
+    );
+  }
+  download () {
+    let element = document.getElementById('pdf');
+    html2canvas(element).then(canvas => {
+      let img = canvas.toDataURL('image/png');
+      let doc = new jspdf('p', 'mm', 'a4');
+      doc.addImage(img, 0, 10, 200, 350);
+      doc.save('recipt.pdf');
+      this.showSuccess();
+      window.location.href = '/users';
+    });
   }
   ngOnInit (): void {
     if (!this.authService.loggedIn()) {
@@ -58,9 +86,12 @@ export class UserComponent implements OnInit {
             phone: pages[i].phone,
             region: pages[i].region,
             appartmentNumber: pages[i].appartmentNumber,
+            transports: pages[i].transports,
             _id: pages[i].id,
             number: pages[i].number,
             fishes: [],
+            sender: pages[i].sender,
+            sent: pages[i].sent,
             total: 0
           });
           fishes.push({
@@ -92,7 +123,10 @@ export class UserComponent implements OnInit {
             }
           }
         }
-        console.log(this.orders);
+        for (let index = 0; index < this.orders.length; index++) {
+          this.orders[index].total += parseInt(this.orders[index].transports);
+          this.orders[index].data = this.datePipe.transform(new Date());
+        }
       },
       e => {
         this.showErrors(e.error.msg || e.error.message);

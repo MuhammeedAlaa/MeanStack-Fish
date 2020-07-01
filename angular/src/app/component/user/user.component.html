@@ -1,16 +1,25 @@
-<div *ngIf="recipt">
+<div *ngIf="!recipt">
   <div class="clearfix mt-5">
     <input class="form-control" type="text" name="search" [(ngModel)]="search" autocomplete="off"
-      placeholder="&#61442; Start searching for an order by phone or order number or region fish type order name ">
+      placeholder="&#61442; Start searching for an order by phone or order number or region fish type order name " />
   </div>
   <div class="row mt-5 jumbotron bg-dark">
     <div class="  col-md-4 mb-3" *ngFor="let order of orders | filter:search">
       <div class="card text-center">
         <div class="card-body">
-          <h5 class="card-title">Order Number: #{{order.number}}</h5>
+          <h5 class="card-title">Order Number: # {{order.number}}</h5>
           <p class="card-text">Name : {{order.name}}</p>
+          <p class="card-text">Phone : {{order.phone}}</p>
+          <p class="card-text">Floor : {{order.floor}}</p>
+          <p class="card-text">Building Number : {{order.buildingNumber}}</p>
+          <p class="card-text">Appartment Number : {{order.appartmentNumber}}</p>
           <p class="card-text">Total Price: {{order.total}}</p>
-          <a href="#" class="btn btn-success">View</a>
+          <td class="text-center text-danger" *ngIf="order.sent">
+            <h4><strong>{{order.sender}} sent it&nbsp;</strong></h4>
+          </td>
+          <button type="button" class="btn btn-success btn-lg btn-block" (click)="user = order; recipt = true;">
+            View Receipt&nbsp;&nbsp;&nbsp;
+          </button>
         </div>
         <div class="card-footer text-muted">
           Region: {{order.region}}
@@ -21,21 +30,18 @@
 </div>
 <!------ Include the above in your HEAD tag ---------->
 <div class="container mt-5 center" style="margin-left: auto;
-  margin-right: auto;display: block;" *ngIf="!recipt">
-  <div class="row">
-    <div class="well col-xs-10 col-sm-10 col-md-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-3">
+  margin-right: auto;display: block;" *ngIf="recipt" id="pdf">
+  <div class="row align-items-center">
+    <div class="well col-sm-12 h-100 d-table">
       <div class="row">
         <div class="col-xs-6 col-sm-6 col-md-6">
-          <address>
-            <strong>مازال الخير</strong><br>
-          </address>
+          <address><strong>مازال الخير</strong><br /></address>
           <abbr title="Phone">01006641803</abbr>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-6 text-right">
-          <p><em>Date: 1st November, 2013</em></p>
+          <p><em>{{user.data}}</em></p>
 
-          <p><em>Receipt #:</em></p>
-
+          <p><em>Receipt # : {{user.number}}</em></p>
         </div>
       </div>
       <div class="row">
@@ -52,11 +58,27 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let order of orders">
-              <td class="col-md-9"><em>Lebanese Cabbage Salad</em></td>
-              <td class="col-md-1" style="text-align: center">1</td>
-              <td class="col-md-1 text-center">$8</td>
-              <td class="col-md-1 text-center">$8</td>
+            <tr *ngFor="let fish of user.fishes">
+              <td class="col-md-9"><em>{{fish.type}}</em></td>
+              <td class="col-md-1" style="text-align: center">
+                {{fish.amount}}
+              </td>
+              <td class="col-md-1 text-center">{{fish.price}}</td>
+              <td class="col-md-1 text-center">{{fish.price * fish.amount}}</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td class="text-right">
+                <p>
+                  <strong>خدمة التوصيل </strong>
+                </p>
+              </td>
+              <td class="text-center">
+                <p>
+                  <strong>{{user.transports}}</strong>
+                </p>
+              </td>
             </tr>
             <tr>
               <td>&nbsp;</td>
@@ -65,12 +87,20 @@
                 <h4><strong>Total:&nbsp;</strong></h4>
               </td>
               <td class="text-center text-danger">
-                <h4 id="total"><strong>$31.53</strong></h4>
+                <h4><strong>{{user.total}}</strong></h4>
               </td>
             </tr>
           </tbody>
-        </table><button type="button" class="btn btn-success btn-lg btn-block">PDF&nbsp;&nbsp;&nbsp;</button>
-        <button type="button" class="btn btn-success btn-lg btn-block">mark as delivered&nbsp;&nbsp;&nbsp;</button>
+        </table>
+        <button type="button" class="btn btn-success btn-lg btn-block" (click)="download()">
+          PDF&nbsp;&nbsp;&nbsp;
+        </button>
+        <button type="button" class="btn btn-success btn-lg btn-block" (click)="sendOrder()" *ngIf="!user.sent">
+          mark as delivered&nbsp;&nbsp;&nbsp;
+        </button>
+        <h1 *ngIf="user.sent" style="text-align: center; margin-top:10px; margin-bottom:10px">
+          <strong>{{user.sender}} has sent it</strong>
+        </h1>
       </div>
     </div>
   </div>
