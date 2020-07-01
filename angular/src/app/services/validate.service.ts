@@ -40,7 +40,7 @@ export class ValidateService {
     return /^01[0-2][0-9]{8}$/.test(phone);
   }
   validateName (name) {
-    return /^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z]+[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z-_]*$/.test(
+    return /^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z]+ +[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z-_]*$/.test(
       name
     );
   }
@@ -48,3 +48,5 @@ export class ValidateService {
     return /^\d+$/.test(number);
   }
 }
+
+//BKWjVvHDSC2wVNTGrh3EZZFjTJtt_Qrpm25UrskuFmRFT62apSs_rRfP_NtEzIxPvUwBTtCwmPlGSi1eUkaWW8w

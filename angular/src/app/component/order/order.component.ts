@@ -74,7 +74,7 @@ export class OrderComponent implements OnInit {
     };
     // Validate name
     if (!this.validateService.validateName(order.name)) {
-      this.showErrors('من فضلك ادخل اسمك بدون ارقام');
+      this.showErrors('من فضلك ادخل اسمك ثنائي بدون ارقام');
       return false;
     }
 
@@ -168,8 +168,13 @@ export class OrderComponent implements OnInit {
     fish.amount = value;
     if (value == '') value = 0;
     let trans = 50;
-    if (this.region.includes('الهرم')) trans = 10;
-    else if (this.region.includes('اكتوبر')) trans = 20;
+    if (this.region.includes('هرم')) trans = 10;
+    else if (
+      this.region.includes('اكتوبر') ||
+      this.region.includes('شيخ زايد') ||
+      this.region.includes('شيخ زائد')
+    )
+      trans = 20;
     document.getElementById('total').innerHTML = trans.toString();
     this.note = true;
     $(`#note`).text(

@@ -46,6 +46,18 @@ export class AuthService {
   loadToken () {
     environment.authToken = localStorage.getItem('token');
   }
+  sendTokenToServer () {
+    if (this.loggedIn()) {
+      if (localStorage.getItem('notificationToken')) {
+        const headers = this.setAuthHeader();
+        return this.httpClient.patch(
+          `${this.REST_API_SERVER}api/v1/users/registration-token`,
+          { regToken: localStorage.getItem('notificationToken') },
+          { headers }
+        );
+      }
+    }
+  }
 
   logout () {
     environment.authToken = undefined;
