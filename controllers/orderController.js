@@ -60,7 +60,7 @@ exports.createOrder = catchAsync(async (req, res, next) => {
     ids,
     'New Order',
     `${order.name} made and order`,
-    './../public/assets/Notify.png'
+    'assets/Notify.png'
   );
 
   return res.status(201).json({
