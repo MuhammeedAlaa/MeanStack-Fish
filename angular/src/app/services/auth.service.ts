@@ -15,18 +15,11 @@ export class AuthService {
 
   sendRegistrationUserRequest (user) {
     const headers = this.setAuthHeader();
-    return this.httpClient.post(
-      `${environment.REST_API_SERVER}api/v1/users/signup`,
-      user,
-      { headers }
-    );
+    return this.httpClient.post(`api/v1/users/signup`, user, { headers });
   }
 
   sendLoginUserRequest (user) {
-    return this.httpClient.post(
-      `${environment.REST_API_SERVER}api/v1/users/login`,
-      user
-    );
+    return this.httpClient.post(`api/v1/users/login`, user);
   }
   name () {
     return localStorage.getItem('name');
@@ -50,7 +43,7 @@ export class AuthService {
       if (localStorage.getItem('notificationToken')) {
         const headers = this.setAuthHeader();
         return this.httpClient.patch(
-          `${environment.REST_API_SERVER}api/v1/users/registration-token`,
+          `api/v1/users/registration-token`,
           { regToken: localStorage.getItem('notificationToken') },
           { headers }
         );

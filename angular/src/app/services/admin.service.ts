@@ -17,21 +17,14 @@ export class AdminService {
   }
   getAdmins () {
     const headers = this.setAuthHeader();
-    return this.httpClient.get(
-      `${environment.REST_API_SERVER}api/v1/users/admins`,
-      {
-        headers
-      }
-    );
+    return this.httpClient.get(`api/v1/users/admins`, {
+      headers
+    });
   }
   editAdmin (user) {
     const headers = this.setAuthHeader();
-    return this.httpClient.patch(
-      `${environment.REST_API_SERVER}api/v1/users/updateMe`,
-      user,
-      {
-        headers
-      }
-    );
+    return this.httpClient.patch(`api/v1/users/updateMe`, user, {
+      headers
+    });
   }
 }
