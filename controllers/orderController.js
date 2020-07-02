@@ -4,6 +4,7 @@ const { Fish } = require('./../models/fishModel');
 const { Admin } = require('./../models/adminModel');
 const catchAsync = require('./../utils/catchAsync');
 const { notify } = require('./../startup/notifications');
+const APIFeatures = require('./../utils/apiFeatures');
 
 exports.createAddress = catchAsync(async (req, res, next) => {
   let order = await Order.findOne({
@@ -44,6 +45,8 @@ exports.createOrder = catchAsync(async (req, res, next) => {
   });
   order.transports = req.body.transports;
   order.Fishes = req.body.Fishes;
+  const orders = await Order.find();
+  order.number = orders.length;
   await order.save({ validateBeforeSave: false });
   const admins = await Admin.find();
   const ids = [];
@@ -93,9 +96,14 @@ exports.deleteOrder = catchAsync(async (req, res, next) => {
   });
 });
 exports.getAllUsers = catchAsync(async (req, res, next) => {
-  const orders = await Order.find();
+  const api = new APIFeatures(Order.find(), req.query)
+    .filter()
+    .limitFields()
+    .paginate()
+    .sort();
+  const orders = await api.query;
+
   let page = [];
-  let number = 1;
   orders.forEach(order => {
     for (let i = 0; i < order.Fishes.length; i++) {
       const info = {
@@ -106,7 +114,7 @@ exports.getAllUsers = catchAsync(async (req, res, next) => {
         buildingNumber: order.buildingNumber,
         appartmentNumber: order.appartmentNumber,
         id: order._id,
-        number: number,
+        number: order.number,
         sender: order.sender,
         sent: order.sent,
         transports: order.transports,
@@ -115,7 +123,6 @@ exports.getAllUsers = catchAsync(async (req, res, next) => {
       };
       page.push(info);
     }
-    number++;
   });
 
   for (let order_index = 0; order_index < page.length; order_index++) {

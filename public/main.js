@@ -98,12 +98,38 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var angular2_flash_messages__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! angular2-flash-messages */ "./node_modules/angular2-flash-messages/__ivy_ngcc__/module/index.js");
 /* harmony import */ var angular2_flash_messages__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(angular2_flash_messages__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
 
 
 
 
 
 
+
+function AppComponent_div_4_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "h1");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](3, "img", 2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "p");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](5);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](6);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipe"](7, "json");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipe"](8, "async");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+} if (rf & 2) {
+    const ctx_r0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx_r0.messagingService.massage.title);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("src", ctx_r0.messagingService.massage.icon, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx_r0.messagingService.massage.body);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](7, 4, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](8, 6, ctx_r0.message)), "\n");
+} }
 class AppComponent {
     constructor(messagingService) {
         this.messagingService = messagingService;
@@ -111,18 +137,23 @@ class AppComponent {
     }
     ngOnInit() {
         this.messagingService.requestPermission();
-        this.messagingService.receiveMessage();
-        this.message = this.messagingService.currentMessage;
+        this.messagingService.monitorRefresh();
+        this.messagingService.receiveMessages();
     }
 }
 AppComponent.ɵfac = function AppComponent_Factory(t) { return new (t || AppComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_massaging_service__WEBPACK_IMPORTED_MODULE_1__["MessagingService"])); };
-AppComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: AppComponent, selectors: [["app-root"]], decls: 4, vars: 0, consts: [[1, "container"]], template: function AppComponent_Template(rf, ctx) { if (rf & 1) {
+AppComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: AppComponent, selectors: [["app-root"]], decls: 6, vars: 3, consts: [[1, "container"], [4, "ngIf"], ["width", "100px", 3, "src"]], template: function AppComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](0, "app-navbar");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](2, "flash-messages");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](3, "router-outlet");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    } }, directives: [_component_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_2__["NavbarComponent"], angular2_flash_messages__WEBPACK_IMPORTED_MODULE_3__["FlashMessagesComponent"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterOutlet"]], styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuY3NzIn0= */"] });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](4, AppComponent_div_4_Template, 9, 8, "div", 1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipe"](5, "async");
+    } if (rf & 2) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](5, 1, ctx.messagingService.massage));
+    } }, directives: [_component_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_2__["NavbarComponent"], angular2_flash_messages__WEBPACK_IMPORTED_MODULE_3__["FlashMessagesComponent"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterOutlet"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgIf"]], pipes: [_angular_common__WEBPACK_IMPORTED_MODULE_5__["AsyncPipe"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["JsonPipe"]], styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuY3NzIn0= */"] });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](AppComponent, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
         args: [{
@@ -161,10 +192,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var angular2_flash_messages__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(angular2_flash_messages__WEBPACK_IMPORTED_MODULE_12__);
 /* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/__ivy_ngcc__/fesm2015/ngx-toastr.js");
 /* harmony import */ var ng2_search_filter__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ng2-search-filter */ "./node_modules/ng2-search-filter/__ivy_ngcc__/ng2-search-filter.js");
-/* harmony import */ var _angular_fire_messaging__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/fire/messaging */ "./node_modules/@angular/fire/__ivy_ngcc__/fesm2015/angular-fire-messaging.js");
-/* harmony import */ var _angular_fire_database__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @angular/fire/database */ "./node_modules/@angular/fire/__ivy_ngcc__/fesm2015/angular-fire-database.js");
-/* harmony import */ var _angular_fire_auth__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @angular/fire/auth */ "./node_modules/@angular/fire/__ivy_ngcc__/fesm2015/angular-fire-auth.js");
-/* harmony import */ var _angular_fire__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @angular/fire */ "./node_modules/@angular/fire/__ivy_ngcc__/fesm2015/angular-fire.js");
+/* harmony import */ var _angular_fire_messaging__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/fire/messaging */ "./node_modules/@angular/fire/__ivy_ngcc__/messaging/es2015/index.js");
+/* harmony import */ var _angular_fire_database__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @angular/fire/database */ "./node_modules/@angular/fire/__ivy_ngcc__/database/es2015/index.js");
+/* harmony import */ var _angular_fire_auth__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @angular/fire/auth */ "./node_modules/@angular/fire/__ivy_ngcc__/auth/es2015/index.js");
+/* harmony import */ var _angular_fire__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @angular/fire */ "./node_modules/@angular/fire/__ivy_ngcc__/es2015/index.js");
 /* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../environments/environment */ "./src/environments/environment.ts");
 /* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./services/auth.service */ "./src/app/services/auth.service.ts");
 /* harmony import */ var _services_validate_service__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./services/validate.service */ "./src/app/services/validate.service.ts");
@@ -2234,9 +2265,12 @@ class UserComponent {
         if (!this.authService.loggedIn()) {
             this.router.navigate(['/home']);
         }
-        this.authService.sendTokenToServer().subscribe(data => { }, e => {
-            this.showErrors(e.error.msg || e.error.message);
-        });
+        if (localStorage.getItem('notificationToken') != undefined)
+            this.authService.sendTokenToServer().subscribe(data => {
+                console.log(data);
+            }, e => {
+                this.showErrors(e.error.msg || e.error.message);
+            });
         this.userService.getOrders().subscribe(data => {
             let arr = [];
             this.orders = Object.keys(data).map(function (key) {
@@ -2354,13 +2388,13 @@ class AdminService {
     }
     getAdmins() {
         const headers = this.setAuthHeader();
-        return this.httpClient.get(`api/v1/users/admins`, {
+        return this.httpClient.get(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].REST_API_SERVER}api/v1/users/admins`, {
             headers
         });
     }
     editAdmin(user) {
         const headers = this.setAuthHeader();
-        return this.httpClient.patch(`api/v1/users/updateMe`, user, {
+        return this.httpClient.patch(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].REST_API_SERVER}api/v1/users/updateMe`, user, {
             headers
         });
     }
@@ -2404,10 +2438,10 @@ class AuthService {
     }
     sendRegistrationUserRequest(user) {
         const headers = this.setAuthHeader();
-        return this.httpClient.post(`api/v1/users/signup`, user, { headers });
+        return this.httpClient.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].REST_API_SERVER}api/v1/users/signup`, user, { headers });
     }
     sendLoginUserRequest(user) {
-        return this.httpClient.post(`api/v1/users/login`, user);
+        return this.httpClient.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].REST_API_SERVER}api/v1/users/login`, user);
     }
     name() {
         return localStorage.getItem('name');
@@ -2430,7 +2464,7 @@ class AuthService {
         if (this.loggedIn()) {
             if (localStorage.getItem('notificationToken')) {
                 const headers = this.setAuthHeader();
-                return this.httpClient.patch(`api/v1/users/registration-token`, { regToken: localStorage.getItem('notificationToken') }, { headers });
+                return this.httpClient.patch(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].REST_API_SERVER}api/v1/users/registration-token`, { regToken: localStorage.getItem('notificationToken') }, { headers });
             }
         }
     }
@@ -2487,33 +2521,32 @@ class FishService {
     }
     getFishes() {
         const headers = this.setAuthHeader();
-        let d = this.httpClient.get(`api/v1/fishes`, {
+        let d = this.httpClient.get(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].REST_API_SERVER}api/v1/fishes`, {
             headers
         });
-        console.log(d);
         return d;
     }
     addFish(newFish) {
         const headers = this.setAuthHeader();
-        return this.httpClient.post(`api/v1/fishes`, newFish, {
+        return this.httpClient.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].REST_API_SERVER}api/v1/fishes`, newFish, {
             headers
         });
     }
     editFish(editedFish) {
         const headers = this.setAuthHeader();
-        return this.httpClient.patch(`api/v1/fishes/${editedFish._id}`, editedFish, {
+        return this.httpClient.patch(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].REST_API_SERVER}api/v1/fishes/${editedFish._id}`, editedFish, {
             headers
         });
     }
     deleteFish(deletedFish) {
         const headers = this.setAuthHeader();
-        return this.httpClient.delete(`api/v1/fishes/${deletedFish._id}`, {
+        return this.httpClient.delete(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].REST_API_SERVER}api/v1/fishes/${deletedFish._id}`, {
             headers
         });
     }
     deleteFishes() {
         const headers = this.setAuthHeader();
-        return this.httpClient.delete(`api/v1/fishes`, {
+        return this.httpClient.delete(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].REST_API_SERVER}api/v1/fishes`, {
             headers
         });
     }
@@ -2534,7 +2567,7 @@ FishService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjec
 /*!***********************************************!*\
   !*** ./src/app/services/massaging.service.ts ***!
   \***********************************************/
-/*! exports provided: MessagingService */
+/*! exports provided: default, MessagingService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2542,42 +2575,77 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MessagingService", function() { return MessagingService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
-/* harmony import */ var _angular_fire_messaging__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/fire/messaging */ "./node_modules/@angular/fire/__ivy_ngcc__/fesm2015/angular-fire-messaging.js");
+/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! firebase/app */ "./node_modules/firebase/app/dist/index.cjs.js");
+/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(firebase_app__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var firebase_messaging__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! firebase/messaging */ "./node_modules/firebase/messaging/dist/index.esm.js");
 
 
 
 
+
+/* harmony default export */ __webpack_exports__["default"] = (firebase_app__WEBPACK_IMPORTED_MODULE_2__);
+// Initialize Firebase
+firebase_app__WEBPACK_IMPORTED_MODULE_2__["initializeApp"]({
+    apiKey: 'AIzaSyDj3259_UB8KdYF9RCcWkbuUK9aV7R9-Tk',
+    authDomain: 'fish-94481.firebaseapp.com',
+    databaseURL: 'https://fish-94481.firebaseio.com',
+    projectId: 'fish-94481',
+    storageBucket: 'fish-94481.appspot.com',
+    messagingSenderId: '93073530574',
+    appId: '1:93073530574:web:2befd0ee0ca174e99cba9f',
+    measurementId: 'G-43PFY7LP1T'
+});
+//Define messaging object to deal with firebase messaging
+const messaging = firebase_app__WEBPACK_IMPORTED_MODULE_2__["messaging"]();
+messaging.usePublicVapidKey('BKWjVvHDSC2wVNTGrh3EZZFjTJtt_Qrpm25UrskuFmRFT62apSs_rRfP_NtEzIxPvUwBTtCwmPlGSi1eUkaWW8w');
 class MessagingService {
-    constructor(angularFireMessaging) {
-        this.angularFireMessaging = angularFireMessaging;
+    constructor() {
         this.currentMessage = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](null);
-        angularFireMessaging.onMessage(payload => {
-            console.log(payload);
+    }
+    // Listen for token refresh
+    monitorRefresh() {
+        messaging.onTokenRefresh(() => {
+            messaging
+                .getToken()
+                .then(refreshedToken => {
+                console.log('Token refreshed.');
+                localStorage.setItem('notificationToken', refreshedToken);
+            })
+                .catch(err => {
+                console.log(err, 'Unable to retrieve new token');
+                localStorage.setItem('notificationToken', undefined);
+            });
         });
     }
     requestPermission() {
-        this.angularFireMessaging.requestToken.subscribe(token => {
-            localStorage.setItem('notificationToken', token);
-        }, err => {
-            console.error('Unable to get permission to notify.', err);
+        messaging
+            .requestPermission()
+            .then(() => {
+            console.log('Have Permission');
+            return messaging.getToken();
+        })
+            .then(currentToken => {
+            console.log(currentToken);
+            localStorage.setItem('notificationToken', currentToken);
+        })
+            .catch(e => {
+            console.log(e, 'Error Ocurred.');
             localStorage.setItem('notificationToken', undefined);
         });
     }
-    receiveMessage() {
-        this.angularFireMessaging.messages.subscribe(payload => {
-            console.log('new message received. ', payload);
+    receiveMessages() {
+        messaging.onMessage(payload => {
+            console.log('Message received. ', payload);
+            this.massage = payload;
             this.currentMessage.next(payload);
         });
     }
 }
-MessagingService.ɵfac = function MessagingService_Factory(t) { return new (t || MessagingService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_fire_messaging__WEBPACK_IMPORTED_MODULE_2__["AngularFireMessaging"])); };
-MessagingService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: MessagingService, factory: MessagingService.ɵfac, providedIn: 'root' });
+MessagingService.ɵfac = function MessagingService_Factory(t) { return new (t || MessagingService)(); };
+MessagingService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: MessagingService, factory: MessagingService.ɵfac });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](MessagingService, [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"],
-        args: [{
-                providedIn: 'root'
-            }]
-    }], function () { return [{ type: _angular_fire_messaging__WEBPACK_IMPORTED_MODULE_2__["AngularFireMessaging"] }]; }, null); })();
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
+    }], function () { return []; }, null); })();
 
 
 /***/ }),
@@ -2593,7 +2661,9 @@ MessagingService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefine
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OrderService", function() { return OrderService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
+
 
 
 
@@ -2602,29 +2672,29 @@ class OrderService {
         this.httpClient = httpClient;
     }
     editOrderInfo(order) {
-        return this.httpClient.patch(`api/v1/users/addressupdate`, order);
+        return this.httpClient.patch(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].REST_API_SERVER}api/v1/users/addressupdate`, order);
     }
     sendOrderInfo(order) {
-        return this.httpClient.post(`api/v1/users/address`, order);
+        return this.httpClient.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].REST_API_SERVER}api/v1/users/address`, order);
     }
     getFishes() {
-        return this.httpClient.get(`api/v1/fishes/user`);
+        return this.httpClient.get(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].REST_API_SERVER}api/v1/fishes/user`);
     }
     sendOrder(order) {
-        return this.httpClient.patch(`api/v1/orders/sendorder`, order);
+        return this.httpClient.patch(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].REST_API_SERVER}api/v1/orders/sendorder`, order);
     }
     deleteOrder(orderId) {
-        return this.httpClient.delete(`api/v1/orders/${orderId}`);
+        return this.httpClient.delete(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].REST_API_SERVER}api/v1/orders/${orderId}`);
     }
 }
-OrderService.ɵfac = function OrderService_Factory(t) { return new (t || OrderService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"])); };
+OrderService.ɵfac = function OrderService_Factory(t) { return new (t || OrderService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"])); };
 OrderService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: OrderService, factory: OrderService.ɵfac, providedIn: 'root' });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](OrderService, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"],
         args: [{
                 providedIn: 'root'
             }]
-    }], function () { return [{ type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"] }]; }, null); })();
+    }], function () { return [{ type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] }]; }, null); })();
 
 
 /***/ }),
@@ -2661,13 +2731,13 @@ class UserService {
     }
     getOrders() {
         const headers = this.setAuthHeader();
-        return this.httpClient.get(`api/v1/orders/getorders`, {
+        return this.httpClient.get(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].REST_API_SERVER}api/v1/orders/getorders`, {
             headers
         });
     }
     sendOrders(orderId) {
         const headers = this.setAuthHeader();
-        return this.httpClient.patch(`api/v1/orders/ordersent`, { _id: orderId }, { headers });
+        return this.httpClient.patch(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].REST_API_SERVER}api/v1/orders/ordersent`, { _id: orderId }, { headers });
     }
 }
 UserService.ɵfac = function UserService_Factory(t) { return new (t || UserService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"])); };
@@ -2758,7 +2828,7 @@ __webpack_require__.r(__webpack_exports__);
 // The list of file replacements can be found in `angular.json`.
 const environment = {
     production: false,
-    REST_API_SERVER: 'http://localhost:3000/api/v1/',
+    REST_API_SERVER: 'http://localhost:3000/',
     authToken: '',
     firebase: {
         apiKey: 'AIzaSyDj3259_UB8KdYF9RCcWkbuUK9aV7R9-Tk',

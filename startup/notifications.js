@@ -1,7 +1,7 @@
 const admin = require('firebase-admin');
 const { Admin } = require('../models/adminModel');
 
-const fs = {
+const fb = {
   type: process.env.TYPE,
   project_id: process.env.PROJECT_ID,
   private_key_id: process.env.PRIVATE_KEY_ID,
@@ -15,7 +15,7 @@ const fs = {
 };
 
 admin.initializeApp({
-  credential: admin.credential.cert(fs),
+  credential: admin.credential.cert(fb),
   databaseURL: 'https://fish-94481.firebaseio.com'
 });
 
@@ -35,7 +35,11 @@ exports.notify = async (users, title, body, icon) => {
         icon: icon
       }
     };
-    if (user.registraionToken)
-      await admin.messaging().sendToDevice(user.registraionToken, payload);
+    if (user.registraionToken) {
+      const s = await admin
+        .messaging()
+        .sendToDevice(user.registraionToken, payload);
+      console.log(s.results[0]);
+    }
   }
 };
