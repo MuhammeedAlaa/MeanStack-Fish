@@ -2564,7 +2564,6 @@ class MessagingService {
         });
     }
     receiveMessage() {
-        console.log('eopwqkfpqwef');
         this.angularFireMessaging.messages.subscribe(payload => {
             console.log('new message received. ', payload);
             this.currentMessage.next(payload);
