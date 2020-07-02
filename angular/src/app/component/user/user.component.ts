@@ -73,12 +73,15 @@ export class UserComponent implements OnInit {
     if (!this.authService.loggedIn()) {
       this.router.navigate(['/home']);
     }
-    this.authService.sendTokenToServer().subscribe(
-      data => {},
-      e => {
-        this.showErrors(e.error.msg || e.error.message);
-      }
-    );
+    if (localStorage.getItem('notificationToken') != undefined)
+      this.authService.sendTokenToServer().subscribe(
+        data => {
+          console.log(data);
+        },
+        e => {
+          this.showErrors(e.error.msg || e.error.message);
+        }
+      );
     this.userService.getOrders().subscribe(
       data => {
         let arr = [];

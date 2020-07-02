@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  REST_API_SERVER: 'http://localhost:3000/api/v1/',
+  REST_API_SERVER: 'http://localhost:3000/',
   authToken: '',
   firebase: {
     apiKey: 'AIzaSyDj3259_UB8KdYF9RCcWkbuUK9aV7R9-Tk',

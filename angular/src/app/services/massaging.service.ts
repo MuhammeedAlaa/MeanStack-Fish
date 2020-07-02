@@ -1,32 +1,70 @@
 import { Injectable } from '@angular/core';
 import { AngularFireMessaging } from '@angular/fire/messaging';
 import { BehaviorSubject } from 'rxjs';
+import * as firebase from 'firebase/app';
+export default firebase;
+import 'firebase/messaging';
 
-@Injectable({
-  providedIn: 'root'
-})
+// Initialize Firebase
+firebase.initializeApp({
+  apiKey: 'AIzaSyDj3259_UB8KdYF9RCcWkbuUK9aV7R9-Tk',
+  authDomain: 'fish-94481.firebaseapp.com',
+  databaseURL: 'https://fish-94481.firebaseio.com',
+  projectId: 'fish-94481',
+  storageBucket: 'fish-94481.appspot.com',
+  messagingSenderId: '93073530574',
+  appId: '1:93073530574:web:2befd0ee0ca174e99cba9f',
+  measurementId: 'G-43PFY7LP1T'
+});
+
+//Define messaging object to deal with firebase messaging
+const messaging = firebase.messaging();
+messaging.usePublicVapidKey(
+  'BKWjVvHDSC2wVNTGrh3EZZFjTJtt_Qrpm25UrskuFmRFT62apSs_rRfP_NtEzIxPvUwBTtCwmPlGSi1eUkaWW8w'
+);
+@Injectable()
 export class MessagingService {
   currentMessage = new BehaviorSubject(null);
-  constructor (private angularFireMessaging: AngularFireMessaging) {
-    angularFireMessaging.onMessage(payload => {
-      console.log(payload);
+  massage;
+
+  constructor () {}
+  // Listen for token refresh
+  monitorRefresh () {
+    messaging.onTokenRefresh(() => {
+      messaging
+        .getToken()
+        .then(refreshedToken => {
+          console.log('Token refreshed.');
+          localStorage.setItem('notificationToken', refreshedToken);
+        })
+        .catch(err => {
+          console.log(err, 'Unable to retrieve new token');
+          localStorage.setItem('notificationToken', undefined);
+        });
     });
   }
 
   requestPermission () {
-    this.angularFireMessaging.requestToken.subscribe(
-      token => {
-        localStorage.setItem('notificationToken', token);
-      },
-      err => {
-        console.error('Unable to get permission to notify.', err);
+    messaging
+      .requestPermission()
+      .then(() => {
+        console.log('Have Permission');
+        return messaging.getToken();
+      })
+      .then(currentToken => {
+        console.log(currentToken);
+        localStorage.setItem('notificationToken', currentToken);
+      })
+      .catch(e => {
+        console.log(e, 'Error Ocurred.');
         localStorage.setItem('notificationToken', undefined);
-      }
-    );
+      });
   }
-  receiveMessage () {
-    this.angularFireMessaging.messages.subscribe(payload => {
-      console.log('new message received. ', payload);
+
+  receiveMessages () {
+    messaging.onMessage(payload => {
+      console.log('Message received. ', payload);
+      this.massage = payload;
       this.currentMessage.next(payload);
     });
   }

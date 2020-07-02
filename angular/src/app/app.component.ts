@@ -7,11 +7,10 @@ import { MessagingService } from './services/massaging.service';
 })
 export class AppComponent {
   title = 'Mazal El Khar';
-  message;
-  constructor (private messagingService: MessagingService) {}
+  constructor (public messagingService: MessagingService) {}
   ngOnInit () {
     this.messagingService.requestPermission();
-    this.messagingService.receiveMessage();
-    this.message = this.messagingService.currentMessage;
+    this.messagingService.monitorRefresh();
+    this.messagingService.receiveMessages();
   }
 }

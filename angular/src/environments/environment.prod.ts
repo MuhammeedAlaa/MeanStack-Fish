@@ -9,5 +9,6 @@ export const environment = {
     messagingSenderId: '93073530574',
     appId: '1:93073530574:web:2befd0ee0ca174e99cba9f',
     measurementId: 'G-43PFY7LP1T'
-  }
+  },
+  REST_API_SERVER: ''
 };

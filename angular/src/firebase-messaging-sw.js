@@ -2,9 +2,6 @@ importScripts('https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js');
 importScripts(
   'https://www.gstatic.com/firebasejs/7.15.5/firebase-messaging.js'
 );
-importScripts(
-  'https://www.gstatic.com/firebasejs/7.15.5/firebase-analytics.js'
-);
 firebase.initializeApp({
   apiKey: 'AIzaSyDj3259_UB8KdYF9RCcWkbuUK9aV7R9-Tk',
   authDomain: 'fish-94481.firebaseapp.com',
