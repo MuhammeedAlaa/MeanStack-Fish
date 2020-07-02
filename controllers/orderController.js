@@ -131,6 +131,7 @@ exports.getAllUsers = catchAsync(async (req, res, next) => {
     page[order_index].price = fish.price;
     page[order_index].type = fish.type;
   }
+
   return res.status(200).json({
     page
   });

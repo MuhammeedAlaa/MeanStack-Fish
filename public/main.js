@@ -1624,6 +1624,7 @@ class OrderComponent {
         }
     }
     sendOrder() {
+        this.user.order.Fishes = [];
         for (var i = 0; i < this.fishes.length; i++) {
             if (this.fishes[i].amount > 0) {
                 this.user.order.Fishes.push({
