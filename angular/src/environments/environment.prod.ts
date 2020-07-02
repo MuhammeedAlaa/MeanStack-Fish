@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
+  authToken: '',
   firebase: {
     apiKey: 'AIzaSyDj3259_UB8KdYF9RCcWkbuUK9aV7R9-Tk',
     authDomain: 'fish-94481.firebaseapp.com',

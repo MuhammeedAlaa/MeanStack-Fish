@@ -3,6 +3,8 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 import { OrderService } from 'src/app/services/order.service';
 import { ValidateService } from 'src/app/services/validate.service';
 import * as $ from 'jquery';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-order',
@@ -29,10 +31,15 @@ export class OrderComponent implements OnInit {
   constructor (
     private flashMessage: FlashMessagesService,
     private orderService: OrderService,
-    private validateService: ValidateService
+    private validateService: ValidateService,
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   ngOnInit (): void {
+    if (this.authService.loggedIn()) {
+      this.router.navigate(['/home']);
+    }
     this.orderService.getFishes().subscribe(
       data => {
         let arr = [];

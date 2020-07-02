@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { AngularFireMessaging } from '@angular/fire/messaging';
 import { BehaviorSubject } from 'rxjs';
 import * as firebase from 'firebase/app';
 export default firebase;
@@ -66,6 +65,39 @@ export class MessagingService {
       console.log('Message received. ', payload);
       this.massage = payload;
       this.currentMessage.next(payload);
+      if (Notification.permission === 'granted') {
+        const notification = new Notification(payload.notification.title, {
+          icon: payload.notification.icon,
+          body: payload.notification.body
+        });
+        if (localStorage.getItem('token')) {
+          notification.onclick = e => {
+            window.location.href = '/users';
+          };
+        } else {
+          notification.onclick = e => {
+            window.location.href = '/home';
+          };
+        }
+      } else if (Notification.permission === 'denied') {
+        Notification.requestPermission().then(permission => {
+          if (permission === 'granted') {
+            const notification = new Notification(payload.notification.title, {
+              icon: payload.notification.icon,
+              body: payload.notification.body
+            });
+            if (localStorage.getItem('token')) {
+              notification.onclick = e => {
+                window.location.href = '/users';
+              };
+            } else {
+              notification.onclick = e => {
+                window.location.href = '/home';
+              };
+            }
+          }
+        });
+      }
     });
   }
 }
