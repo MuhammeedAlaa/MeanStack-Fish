@@ -2366,13 +2366,13 @@ class AdminService {
     }
     getAdmins() {
         const headers = this.setAuthHeader();
-        return this.httpClient.get(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].REST_API_SERVER}api/v1/users/admins`, {
+        return this.httpClient.get(`api/v1/users/admins`, {
             headers
         });
     }
     editAdmin(user) {
         const headers = this.setAuthHeader();
-        return this.httpClient.patch(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].REST_API_SERVER}api/v1/users/updateMe`, user, {
+        return this.httpClient.patch(`api/v1/users/updateMe`, user, {
             headers
         });
     }
@@ -2416,10 +2416,10 @@ class AuthService {
     }
     sendRegistrationUserRequest(user) {
         const headers = this.setAuthHeader();
-        return this.httpClient.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].REST_API_SERVER}api/v1/users/signup`, user, { headers });
+        return this.httpClient.post(`api/v1/users/signup`, user, { headers });
     }
     sendLoginUserRequest(user) {
-        return this.httpClient.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].REST_API_SERVER}api/v1/users/login`, user);
+        return this.httpClient.post(`api/v1/users/login`, user);
     }
     name() {
         return localStorage.getItem('name');
@@ -2442,7 +2442,7 @@ class AuthService {
         if (this.loggedIn()) {
             if (localStorage.getItem('notificationToken')) {
                 const headers = this.setAuthHeader();
-                return this.httpClient.patch(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].REST_API_SERVER}api/v1/users/registration-token`, { regToken: localStorage.getItem('notificationToken') }, { headers });
+                return this.httpClient.patch(`api/v1/users/registration-token`, { regToken: localStorage.getItem('notificationToken') }, { headers });
             }
         }
     }
@@ -2499,32 +2499,32 @@ class FishService {
     }
     getFishes() {
         const headers = this.setAuthHeader();
-        let d = this.httpClient.get(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].REST_API_SERVER}api/v1/fishes`, {
+        let d = this.httpClient.get(`api/v1/fishes`, {
             headers
         });
         return d;
     }
     addFish(newFish) {
         const headers = this.setAuthHeader();
-        return this.httpClient.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].REST_API_SERVER}api/v1/fishes`, newFish, {
+        return this.httpClient.post(`api/v1/fishes`, newFish, {
             headers
         });
     }
     editFish(editedFish) {
         const headers = this.setAuthHeader();
-        return this.httpClient.patch(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].REST_API_SERVER}api/v1/fishes/${editedFish._id}`, editedFish, {
+        return this.httpClient.patch(`api/v1/fishes/${editedFish._id}`, editedFish, {
             headers
         });
     }
     deleteFish(deletedFish) {
         const headers = this.setAuthHeader();
-        return this.httpClient.delete(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].REST_API_SERVER}api/v1/fishes/${deletedFish._id}`, {
+        return this.httpClient.delete(`api/v1/fishes/${deletedFish._id}`, {
             headers
         });
     }
     deleteFishes() {
         const headers = this.setAuthHeader();
-        return this.httpClient.delete(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].REST_API_SERVER}api/v1/fishes`, {
+        return this.httpClient.delete(`api/v1/fishes`, {
             headers
         });
     }
@@ -2675,9 +2675,7 @@ MessagingService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefine
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OrderService", function() { return OrderService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/environments/environment */ "./src/environments/environment.ts");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
-
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
 
 
 
@@ -2686,29 +2684,29 @@ class OrderService {
         this.httpClient = httpClient;
     }
     editOrderInfo(order) {
-        return this.httpClient.patch(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].REST_API_SERVER}api/v1/users/addressupdate`, order);
+        return this.httpClient.patch(`api/v1/users/addressupdate`, order);
     }
     sendOrderInfo(order) {
-        return this.httpClient.post(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].REST_API_SERVER}api/v1/users/address`, order);
+        return this.httpClient.post(`api/v1/users/address`, order);
     }
     getFishes() {
-        return this.httpClient.get(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].REST_API_SERVER}api/v1/fishes/user`);
+        return this.httpClient.get(`api/v1/fishes/user`);
     }
     sendOrder(order) {
-        return this.httpClient.patch(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].REST_API_SERVER}api/v1/orders/sendorder`, order);
+        return this.httpClient.patch(`api/v1/orders/sendorder`, order);
     }
     deleteOrder(orderId) {
-        return this.httpClient.delete(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].REST_API_SERVER}api/v1/orders/${orderId}`);
+        return this.httpClient.delete(`api/v1/orders/${orderId}`);
     }
 }
-OrderService.ɵfac = function OrderService_Factory(t) { return new (t || OrderService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"])); };
+OrderService.ɵfac = function OrderService_Factory(t) { return new (t || OrderService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"])); };
 OrderService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: OrderService, factory: OrderService.ɵfac, providedIn: 'root' });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](OrderService, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"],
         args: [{
                 providedIn: 'root'
             }]
-    }], function () { return [{ type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] }]; }, null); })();
+    }], function () { return [{ type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"] }]; }, null); })();
 
 
 /***/ }),
@@ -2745,13 +2743,13 @@ class UserService {
     }
     getOrders() {
         const headers = this.setAuthHeader();
-        return this.httpClient.get(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].REST_API_SERVER}api/v1/orders/getorders`, {
+        return this.httpClient.get(`api/v1/orders/getorders`, {
             headers
         });
     }
     sendOrders(orderId) {
         const headers = this.setAuthHeader();
-        return this.httpClient.patch(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].REST_API_SERVER}api/v1/orders/ordersent`, { _id: orderId }, { headers });
+        return this.httpClient.patch(`api/v1/orders/ordersent`, { _id: orderId }, { headers });
     }
 }
 UserService.ɵfac = function UserService_Factory(t) { return new (t || UserService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"])); };

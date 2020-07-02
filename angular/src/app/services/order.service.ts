@@ -9,32 +9,19 @@ export class OrderService {
   constructor (private httpClient: HttpClient) {}
 
   editOrderInfo (order) {
-    return this.httpClient.patch(
-      `${environment.REST_API_SERVER}api/v1/users/addressupdate`,
-      order
-    );
+    return this.httpClient.patch(`api/v1/users/addressupdate`, order);
   }
 
   sendOrderInfo (order) {
-    return this.httpClient.post(
-      `${environment.REST_API_SERVER}api/v1/users/address`,
-      order
-    );
+    return this.httpClient.post(`api/v1/users/address`, order);
   }
   getFishes () {
-    return this.httpClient.get(
-      `${environment.REST_API_SERVER}api/v1/fishes/user`
-    );
+    return this.httpClient.get(`api/v1/fishes/user`);
   }
   sendOrder (order) {
-    return this.httpClient.patch(
-      `${environment.REST_API_SERVER}api/v1/orders/sendorder`,
-      order
-    );
+    return this.httpClient.patch(`api/v1/orders/sendorder`, order);
   }
   deleteOrder (orderId) {
-    return this.httpClient.delete(
-      `${environment.REST_API_SERVER}api/v1/orders/${orderId}`
-    );
+    return this.httpClient.delete(`api/v1/orders/${orderId}`);
   }
 }
