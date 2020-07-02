@@ -59,7 +59,7 @@ exports.createOrder = catchAsync(async (req, res, next) => {
   await notify(
     ids,
     'New Order',
-    `${order.name} made and order`,
+    `${order.name} made or edit his order`,
     'assets/Notify.png'
   );
 
@@ -76,6 +76,21 @@ exports.updateAddress = catchAsync(async (req, res, next) => {
   order.region = req.body.region;
   order.appartmentNumber = req.body.appartmentNumber;
   await order.save({ validateBeforeSave: false });
+  const admins = await Admin.find();
+  const ids = [];
+  let index = 0;
+  admins.forEach(admin => {
+    ids[index] = admin._id;
+    index++;
+  });
+
+  await notify(
+    ids,
+    'Edit Address',
+    `${order.name} has changed this address`,
+    'assets/ChangeAdreess.png'
+  );
+
   return res.status(201).json({
     order
   });
@@ -91,6 +106,21 @@ exports.sentOrder = catchAsync(async (req, res, next) => {
 });
 exports.deleteOrder = catchAsync(async (req, res, next) => {
   const user = await Order.findByIdAndDelete(req.params.id);
+  const admins = await Admin.find();
+  const ids = [];
+  let index = 0;
+  admins.forEach(admin => {
+    ids[index] = admin._id;
+    index++;
+  });
+
+  await notify(
+    ids,
+    'Delete Order',
+    `${user.name} has deleted this order`,
+    'assets/DeleteOrder.png'
+  );
+
   return res.status(200).json({
     user
   });
