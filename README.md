@@ -52,4 +52,4 @@ These instructions will get you a copy of the project up and running on your loc
 
 ## External links
 
-you can find a heroku deployed version of the project in the following [link].
+you can find a heroku deployed version of the project in the following [link](https://boxing-minister-63680.herokuapp.com/home).
