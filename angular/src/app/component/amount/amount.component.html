@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="clearfix">
+    <input class="form-control" type="text" name="search" [(ngModel)]="search" autocomplete="off"
+      placeholder="&#61442;  Start searching for a fish by type or price">
+    <div class="clearfix">
+      <table class="table mb-5 mt-5">
+        <caption>Fishes</caption>
+        <thead>
+          <tr>
+            <th scope="col">Type</th>
+            <th scope="col">Day</th>
+            <th scope="col">Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let fish of fishes | filter:search">
+            <td scope="row">{{fish.type}} </td>
+            <td scope="row">{{fish.d}} </td>
+            <td scope="row">{{fish.amount}} </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

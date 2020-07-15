@@ -2,7 +2,8 @@
   <div class="row">
 
     <div class="col mt-3 mb-3 ml-9">
-      <button class="btn btn-success btn-block" (click)="add = true; placeholder = 'add'"><span
+      <button class="btn btn-success btn-block"
+        (click)="add = true; placeholder = 'add'; day = undefined; type = undefined; price = undefined;"><span
           class="glyphicon glyphicon-plus">
         </span>Add
         more Fishes</button>
@@ -27,6 +28,7 @@
         <tr>
           <th scope="col">Type</th>
           <th scope="col">Price</th>
+          <th scope="col">Day</th>
           <th scope="col">Picture</th>
           <th scope="col"></th>
           <th scope="col"></th>
@@ -36,12 +38,13 @@
         <tr *ngFor="let fish of fishes | filter:search">
           <td scope="row">{{fish.type}} </td>
           <td scope="row">{{fish.price}} </td>
+          <td scope="row">{{fish.d}} </td>
           <td><img src={{fish.img}} alt={{fish.type}} height="60" width="60"></td>
           <td scope="row">
-            <button class="btn btn-primary" *ngIf="!edit" (click)="edit = true; editFish(fish);">Edit</button>
+            <button class="btn btn-primary" (click)="edit = true; editFish(fish);">Edit</button>
           </td>
           <td scope="row">
-            <button class="btn btn-danger" *ngIf="!edit" (click)="deleteFish(fish);">Delete</button>
+            <button class="btn btn-danger" (click)="deleteFish(fish);">Delete</button>
           </td>
         </tr>
       </tbody>
@@ -65,8 +68,20 @@
         Please enter fish price
       </div>
     </div>
+    <div class="form-group">
+      <label for="editDay" id="labelday">Fish Day</label>
+      <select class="form-control" id="day" name="day" (change)="setDay()" id="list">
+        <option value="">Choose a day</option>
+        <option *ngFor="let r of daysData">
+          {{r.fromDay}}</option>
+      </select>
+      <div class="form-alert alert alert-danger" *ngIf="!day">
+        Please enter fish day
+      </div>
+    </div>
     <button class="btn btn-primary mr-4" (click)="editSaveFish(); edit = false; add = false;"
-      [disabled]="!type || !price"> <i class="glyphicon glyphicon-pencil">
+      [disabled]="!type || !price">
+      <i class="glyphicon glyphicon-pencil">
       </i>Save
       change </button>
     <button class="btn btn-primary" (click)="edit = false; add = false;">

@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -33,6 +33,8 @@ import { FishComponent } from './component/fish/fish.component';
 import { AdminComponent } from './component/admin/admin.component';
 import { UserComponent } from './component/user/user.component';
 import { MessagingService } from './services/massaging.service';
+import { DayComponent } from './component/day/day.component';
+import { AmountComponent } from './component/amount/amount.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { MessagingService } from './services/massaging.service';
     FishComponent,
     AdminComponent,
     UserComponent,
-    OrderComponent
+    OrderComponent,
+    DayComponent,
+    AmountComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +58,7 @@ import { MessagingService } from './services/massaging.service';
     CommonModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     FlashMessagesModule.forRoot(),
     ToastrModule.forRoot(),

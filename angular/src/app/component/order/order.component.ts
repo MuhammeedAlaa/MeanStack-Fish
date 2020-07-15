@@ -5,6 +5,7 @@ import { ValidateService } from 'src/app/services/validate.service';
 import * as $ from 'jquery';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-order',
@@ -23,11 +24,24 @@ export class OrderComponent implements OnInit {
   placeholder: String = 'ادخل';
   user: any;
   fishes: any;
+  fishesOrder: any;
   note: boolean = false;
   sent: boolean = false;
   edit: boolean = false;
   add: boolean = true;
-
+  regions: any;
+  dayObj: any;
+  place: String;
+  trans: string;
+  private days = [
+    'اﻷحد',
+    'اﻷثنين',
+    'الثلاثاء',
+    'اﻷربعاء',
+    'الخميس',
+    'الجمعة',
+    'السبت'
+  ];
   constructor (
     private flashMessage: FlashMessagesService,
     private orderService: OrderService,
@@ -35,27 +49,87 @@ export class OrderComponent implements OnInit {
     private router: Router,
     private authService: AuthService
   ) {}
+  formatDate (date) {
+    var d = new Date(date),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
 
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [year, month, day].join('-');
+  }
   ngOnInit (): void {
     if (this.authService.loggedIn()) {
       this.router.navigate(['/home']);
     }
-    this.orderService.getFishes().subscribe(
+    this.orderService.getDays().subscribe(
       data => {
+        console.log(data);
+
         let arr = [];
-        this.fishes = Object.keys(data).map(function (key) {
+        this.regions = Object.keys(data).map(function (key) {
           arr.push({ [key]: data[key] });
           return arr;
         });
-        this.fishes = this.fishes[0][0].fishes;
-        for (let i = 0; i < this.fishes.length; i++) {
-          this.fishes[i].amount = 0;
+        this.regions = this.regions[0][0].days;
+        let j = 0;
+        while (j < this.regions.length) {
+          const end = new Date(this.regions[j].to);
+          const now = new Date();
+          if (end < now) {
+            this.regions.splice(j, 1);
+          } else j++;
+        }
+        for (let i = 0; i < this.regions.length; i++) {
+          const ele1 = new Date(this.regions[i].from);
+          const ele = this.formatDate(this.regions[i].from);
+          this.regions[i].fromDay = this.days[ele1.getDay()] + ` (${ele})`;
         }
       },
       e => {
         this.showErrors(e.error.msg || e.error.message);
       }
     );
+    this.orderService.getFishes().subscribe(
+      data => {
+        let arr = [];
+        this.fishesOrder = Object.keys(data).map(function (key) {
+          arr.push({ [key]: data[key] });
+          return arr;
+        });
+        this.fishesOrder = this.fishesOrder[0][0].fishes;
+        for (let i = 0; i < this.fishesOrder.length; i++) {
+          this.fishesOrder[i].amount = 0;
+        }
+      },
+      e => {
+        this.showErrors(e.error.msg || e.error.message);
+      }
+    );
+  }
+  setDay () {
+    let id = $('#day').val();
+    if (id == '') {
+      this.dayObj = undefined;
+    } else
+      for (let index = 0; index < this.regions.length; index++) {
+        if (id == this.regions[index].fromDay)
+          this.dayObj = this.regions[index];
+      }
+  }
+  setRegion () {
+    let id = $('#editRegion').val();
+    if (id == '') {
+      this.region = undefined;
+      this.trans = undefined;
+    } else
+      for (let index = 0; index < this.dayObj.region.length; index++) {
+        if (id == this.dayObj.region[index].place)
+          (this.region = this.dayObj.region[index].place),
+            (this.trans = this.dayObj.region[index].trans);
+      }
   }
   async showSuccess () {
     await this.flashMessage.show('تم بنجاح', {
@@ -71,13 +145,20 @@ export class OrderComponent implements OnInit {
     });
   }
   onSubmit () {
+    this.fishes = [];
+    for (let i = 0; i < this.fishesOrder.length; i++) {
+      if (this.fishesOrder[i].day == this.dayObj.from)
+        this.fishes.push(this.fishesOrder[i]);
+    }
     const order = {
       name: this.name,
       floor: this.floor,
       buildingNumber: this.building,
       phone: this.phone,
       region: this.region,
-      appartmentNumber: this.appartment
+      appartmentNumber: this.appartment,
+      transports: this.trans,
+      day: this.dayObj.from
     };
     // Validate name
     if (!this.validateService.validateName(order.name)) {
@@ -175,25 +256,18 @@ export class OrderComponent implements OnInit {
     let value = $(`#${fish._id}`).val();
     fish.amount = value;
     if (value == '') value = 0;
-    let trans = 50;
-    if (this.region.includes('هرم')) trans = 10;
-    else if (
-      this.region.includes('اكتوبر') ||
-      this.region.includes('شيخ زايد') ||
-      this.region.includes('شيخ زائد')
-    )
-      trans = 20;
-    document.getElementById('total').innerHTML = trans.toString();
+
+    document.getElementById('total').innerHTML = this.trans.toString();
     this.note = true;
     $(`#note`).text(
-      ' قيمة خدمة التوصيل الي ' + this.region + ' تساوي ' + trans
+      ' قيمة خدمة التوصيل الي ' + this.region + ' تساوي ' + this.trans
     );
-    this.user.order.transports = trans;
-    let sum = trans;
+    this.user.order.transports = this.trans;
+    let sum = parseInt(this.trans);
     for (let i = 0; i < this.fishes.length; i++) {
       sum += this.fishes[i].amount * this.fishes[i].price;
     }
-    if (sum == trans) {
+    if (sum == parseInt(this.trans)) {
       document.getElementById('total').innerHTML = '0';
     } else {
       document.getElementById('total').innerHTML = sum.toString();

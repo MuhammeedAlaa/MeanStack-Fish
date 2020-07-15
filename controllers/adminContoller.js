@@ -3,6 +3,9 @@ const { Admin } = require('./../models/adminModel');
 const catchAsync = require('../utils/catchAsync');
 const APIFeatures = require('../utils/apiFeatures');
 const { Notification } = require('../models/notificationsModel');
+const { Days } = require('./../models/dayModel');
+const { Fish } = require('./../models/fishModel');
+const { Order } = require('./../models/orderModel');
 
 exports.admin = catchAsync(async (req, res, next) => {
   const api = new APIFeatures(Admin.find(), req.query)
@@ -40,4 +43,43 @@ exports.getNotificationsHistory = catchAsync(async (req, res, next) => {
   }
   const notifications = await Notification.findById(user.notification);
   res.status(200).json({ notifications });
+});
+
+exports.insertDay = catchAsync(async (req, res, next) => {
+  console.log(req.body);
+  const day = await Days.create({
+    ..._.pick(req.body, ['from', 'to', 'region'])
+  });
+  return res.status(201).json({
+    day
+  });
+});
+exports.editDay = catchAsync(async (req, res, next) => {
+  const filteredBody = _.pick(req.body, ['from', 'to', 'region']);
+  const updatedDay = await Days.findByIdAndUpdate(req.params.id, filteredBody, {
+    new: true,
+    runValidators: true
+  });
+  res.status(200).json({
+    day: updatedDay
+  });
+});
+exports.deleteAllDays = catchAsync(async (req, res, next) => {
+  await Fish.deleteMany();
+  await Order.deleteMany();
+  await Days.deleteMany();
+  await Notification.deleteMany();
+  res.status(200).json({
+    massages: 'deleted'
+  });
+});
+
+exports.deleteDay = catchAsync(async (req, res, next) => {
+  const day = await Days.findByIdAndDelete(req.params.id);
+  await Fish.deleteMany({ day: day.from });
+  await Order.deleteMany({ day: day.from });
+  await Notification.deleteMany({ day: day.from });
+  res.status(200).json({
+    massages: 'deleted'
+  });
 });

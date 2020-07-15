@@ -23,27 +23,31 @@ export class NavbarComponent implements OnInit {
   notification: any;
   ngOnInit (): void {
     this.name = localStorage.getItem('name');
-    this.admin.getAdminNotifications().subscribe(
-      data => {
-        console.log(data);
-        let arr = [];
-        this.notification = Object.keys(data).map(function (key) {
-          arr.push({ [key]: data[key] });
-          return arr;
-        });
-        this.notification = this.notification[0][0].notifications.items;
-        for (let index = 0; index < this.notification.length; index++) {
-          this.notification[index].data = JSON.parse(
-            this.notification[index].data.data
-          );
-          this.notification[index].date = this.datePipe.transform(
-            this.notification[index].date
-          );
+    if (this._authService.loggedIn())
+      this.admin.getAdminNotifications().subscribe(
+        data => {
+          let arr = [];
+          this.notification = Object.keys(data).map(function (key) {
+            arr.push({ [key]: data[key] });
+            return arr;
+          });
+          this.notification = this.notification[0][0].notifications.items;
+          for (let index = 0; index < this.notification.length; index++) {
+            this.notification[index].data = JSON.parse(
+              this.notification[index].data.data
+            );
+            this.notification[index].date = this.datePipe.transform(
+              this.notification[index].date
+            );
+          }
+        },
+        error => {
+          this.flashMessage.show(error.message, {
+            cssClass: 'alert-danger',
+            timeout: 3000
+          });
         }
-        console.log(this.notification);
-      },
-      error => {}
-    );
+      );
   }
 
   onLogout () {

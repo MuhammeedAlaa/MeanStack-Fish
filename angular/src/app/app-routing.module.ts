@@ -7,6 +7,8 @@ import { OrderComponent } from './component/order/order.component';
 import { FishComponent } from './component/fish/fish.component';
 import { UserComponent } from './component/user/user.component';
 import { AdminComponent } from './component/admin/admin.component';
+import { DayComponent } from './component/day/day.component';
+import { AmountComponent } from './component/amount/amount.component';
 import { NotFoundComponent } from './component/not-found/not-found.component';
 
 const routes: Routes = [
@@ -18,6 +20,8 @@ const routes: Routes = [
   { path: 'fishes', component: FishComponent },
   { path: 'users', component: UserComponent },
   { path: 'admins', component: AdminComponent },
+  { path: 'days', component: DayComponent },
+  { path: 'amounts', component: AmountComponent },
   { path: '**', component: NotFoundComponent }
 ];
 

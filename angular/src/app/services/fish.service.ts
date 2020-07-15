@@ -19,25 +19,21 @@ export class FishService {
   }
   getFishes () {
     const headers = this.setAuthHeader();
-    let d = this.httpClient.get(`${this.REST_API_SERVER}api/v1/fishes`, {
+    let d = this.httpClient.get(`api/v1/fishes`, {
       headers
     });
     return d;
   }
   addFish (newFish) {
     const headers = this.setAuthHeader();
-    return this.httpClient.post(
-      `${this.REST_API_SERVER}api/v1/fishes`,
-      newFish,
-      {
-        headers
-      }
-    );
+    return this.httpClient.post(`api/v1/fishes`, newFish, {
+      headers
+    });
   }
   editFish (editedFish) {
     const headers = this.setAuthHeader();
     return this.httpClient.patch(
-      `${this.REST_API_SERVER}api/v1/fishes/${editedFish._id}`,
+      `api/v1/fishes/${editedFish._id}`,
       editedFish,
       {
         headers
@@ -46,16 +42,19 @@ export class FishService {
   }
   deleteFish (deletedFish) {
     const headers = this.setAuthHeader();
-    return this.httpClient.delete(
-      `${this.REST_API_SERVER}api/v1/fishes/${deletedFish._id}`,
-      {
-        headers
-      }
-    );
+    return this.httpClient.delete(`api/v1/fishes/${deletedFish._id}`, {
+      headers
+    });
+  }
+  getAmounts () {
+    const headers = this.setAuthHeader();
+    return this.httpClient.get(`api/v1/fishes/amounts`, {
+      headers
+    });
   }
   deleteFishes () {
     const headers = this.setAuthHeader();
-    return this.httpClient.delete(`${this.REST_API_SERVER}api/v1/fishes`, {
+    return this.httpClient.delete(`api/v1/fishes`, {
       headers
     });
   }

@@ -17,6 +17,12 @@
         <a class="nav-link" *ngIf="_authService.loggedIn()" routerLink="/users" routerLinkActive="active">Orders</a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" *ngIf="_authService.loggedIn()" routerLink="/days" routerLinkActive="active">Days</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" *ngIf="_authService.loggedIn()" routerLink="/amounts" routerLinkActive="active">Amounts</a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" *ngIf="_authService.loggedIn()" routerLink="/fishes" routerLinkActive="active">Fishes</a>
       </li>
     </ul>

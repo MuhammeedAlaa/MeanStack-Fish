@@ -3,7 +3,8 @@
 
   <div class="row" *ngIf="!edit && !add;">
     <div class="col mt-3 mb-3 ml-9">
-      <button class="btn btn-primary btn-block" (click)="edit = true; placeholder = 'عدل';"><span
+      <button class="btn btn-primary btn-block"
+        (click)="edit = true; placeholder = 'عدل'; dayObj = undefined; region = undefined;"><span
           class="glyphicon glyphicon-plus">
         </span>تعديل العنوان</button>
     </div>
@@ -87,11 +88,23 @@
                 الهاتف
               </div>
             </div>
-
             <div class="form-group">
+              <label for="day">اليوم</label>
+              <select class="form-control" id="day" name="day" (change)="setDay()">
+                <option value="">اختار يوم من هذه الايام</option>
+                <option *ngFor="let r of regions">
+                  {{r.fromDay}}</option>
+              </select>
+              <div class="form-alert alert alert-danger" *ngIf="!dayObj">لا يمكن طلب اوردر بدون
+                ادخال اليوم
+              </div>
+            </div>
+            <div class="form-group" *ngIf="dayObj">
               <label for="editRegion" id="labelregion">المنطقة</label>
-              <input class="form-control" id="editRegion" type="text" name="region" [(ngModel)]="region" required
-                minlength="11" maxlength="11" placeholder="من فضلك {{placeholder}} المنطقة" autocomplete="off" />
+              <select class="form-control" name="region" id="editRegion" (change)="setRegion()" required>
+                <option value="">اختار منطقة من هذه الايام</option>
+                <option *ngFor="let d of dayObj.region">{{d.place}}</option>
+              </select>
               <div class="form-alert alert alert-danger" *ngIf="!region">لا يمكن طلب اوردر
                 بدون
                 المنطقة
@@ -125,7 +138,8 @@
               </div>
             </div>
             <button type="submit" class="btn btn-success float-right"
-              [disabled]="!name || !phone || !appartment || !region || !floor || !building">ادخل العنوان</button>
+              [disabled]="!name || !phone || !appartment || !region || !floor || !building || !dayObj">ادخل
+              العنوان</button>
           </form>
         </div>
       </div>

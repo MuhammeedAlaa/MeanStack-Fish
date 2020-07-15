@@ -2,6 +2,7 @@ const _ = require('lodash');
 const { Order } = require('./../models/orderModel');
 const { Fish } = require('./../models/fishModel');
 const { Admin } = require('./../models/adminModel');
+const { Days } = require('./../models/dayModel');
 const catchAsync = require('./../utils/catchAsync');
 const { notify } = require('./../startup/notifications');
 const APIFeatures = require('./../utils/apiFeatures');
@@ -14,7 +15,9 @@ exports.createAddress = catchAsync(async (req, res, next) => {
       'phone',
       'buildingNumber',
       'region',
-      'appartmentNumber'
+      'appartmentNumber',
+      'day',
+      'transports'
     ])
   });
   if (!order) {
@@ -25,7 +28,9 @@ exports.createAddress = catchAsync(async (req, res, next) => {
         'phone',
         'buildingNumber',
         'region',
-        'appartmentNumber'
+        'appartmentNumber',
+        'day',
+        'transports'
       ])
     });
     await order.save({ validateBeforeSave: false });
@@ -59,6 +64,7 @@ exports.createOrder = catchAsync(async (req, res, next) => {
   await notify(
     ids,
     order._id,
+    order.day,
     'New Order',
     `${order.name} made or edit his order`,
     'assets/Notify.png'
@@ -68,6 +74,7 @@ exports.createOrder = catchAsync(async (req, res, next) => {
     order
   });
 });
+
 exports.updateAddress = catchAsync(async (req, res, next) => {
   const order = await Order.findById(req.body._id);
   order.floor = req.body.floor;
@@ -88,6 +95,7 @@ exports.updateAddress = catchAsync(async (req, res, next) => {
   await notify(
     ids,
     order._id,
+    order.day,
     'Edit Address',
     `${order.name} has changed this address`,
     'assets/ChangeAdreess.png'
@@ -118,6 +126,7 @@ exports.deleteOrder = catchAsync(async (req, res, next) => {
 
   await notify(
     ids,
+    order.day,
     user._id,
     'Delete Order',
     `${user.name} has deleted this order`,
@@ -152,12 +161,12 @@ exports.getAllUsers = catchAsync(async (req, res, next) => {
         sent: order.sent,
         transports: order.transports,
         amount: order.Fishes[i].amount,
-        fishId: order.Fishes[i].Fish
+        fishId: order.Fishes[i].Fish,
+        day: order.day
       };
       page.push(info);
     }
   });
-
   for (let order_index = 0; order_index < page.length; order_index++) {
     const element = page[order_index].fishId;
     const fish = await Fish.findById(element);
@@ -167,5 +176,17 @@ exports.getAllUsers = catchAsync(async (req, res, next) => {
 
   return res.status(200).json({
     page
+  });
+});
+exports.getDays = catchAsync(async (req, res, next) => {
+  const api = new APIFeatures(Days.find(), req.query)
+    .filter()
+    .limitFields()
+    .paginate()
+    .sort();
+  const days = await api.query;
+
+  return res.status(200).json({
+    days
   });
 });

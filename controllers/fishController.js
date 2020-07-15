@@ -15,17 +15,7 @@ exports.getFishes = catchAsync(async (req, res, next) => {
     fishes
   });
 });
-exports.getFishess = catchAsync(async (req, res, next) => {
-  const api = new APIFeatures(Fish.find(), req.query)
-    .filter()
-    .limitFields()
-    .paginate()
-    .sort();
-  const fishes = await api.query;
-  res.status(200).json({
-    fishes
-  });
-});
+
 exports.getFisheId = catchAsync(async (req, res, next) => {
   const fishes = await Fish.findById(req.params.id);
   res.status(200).json({
@@ -46,7 +36,7 @@ exports.deleteAllFish = catchAsync(async (req, res, next) => {
   });
 });
 exports.addFish = catchAsync(async (req, res, next) => {
-  const filteredBody = _.pick(req.body, ['price', 'type']);
+  const filteredBody = _.pick(req.body, ['price', 'type', 'day']);
   if (req.file) filteredBody.imgUrl = req.file.filename;
   const newFish = await Fish.create(filteredBody);
   res.status(200).json({
@@ -54,7 +44,7 @@ exports.addFish = catchAsync(async (req, res, next) => {
   });
 });
 exports.updateFish = catchAsync(async (req, res, next) => {
-  const filteredBody = _.pick(req.body, ['type', 'price']);
+  const filteredBody = _.pick(req.body, ['type', 'price', 'day']);
   const updatedFish = await Fish.findByIdAndUpdate(
     req.params.id,
     filteredBody,
@@ -65,5 +55,51 @@ exports.updateFish = catchAsync(async (req, res, next) => {
   );
   res.status(200).json({
     fish: updatedFish
+  });
+});
+exports.getAmounts = catchAsync(async (req, res, next) => {
+  const orders = await Order.find();
+  const fishes = await Fish.find();
+  const map = new Map();
+  fishes.forEach(fish => {
+    const obj = {
+      id: fish._id,
+      day: fish.day
+    };
+    map.set(obj, fish.type);
+  });
+  let page = [];
+  orders.forEach(order => {
+    order.Fishes.forEach(fish => {
+      const obj = {
+        id: fish.Fish,
+        day: order.day,
+        amount: fish.amount
+      };
+      page.push(obj);
+    });
+  });
+  let result = [];
+  map.forEach((value, key) => {
+    key.day = key.day.toString();
+    key.id = key.id.toString();
+    const obj = {
+      day: key.day,
+      type: value,
+      amount: 0
+    };
+    let amount = 0;
+    page.forEach(obj => {
+      const d = obj.id.toString();
+      const id = obj.day.toString();
+      if (key.id == d && key.day == id) {
+        amount += parseInt(obj.amount);
+      }
+    });
+    obj.amount = amount;
+    result.push(obj);
+  });
+  res.status(200).json({
+    result
   });
 });

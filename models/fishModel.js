@@ -20,7 +20,7 @@ const fishSchema = new mongoose.Schema({
     default: 'images/users/default.png'
   },
   day: {
-    type: Schema.Types.Date,
+    type: mongoose.Schema.Types,
     ref: 'Day.from'
   }
 });

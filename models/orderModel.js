@@ -43,7 +43,10 @@ const orderSchema = new mongoose.Schema({
     minlength: 1,
     maxlength: 30
   },
-  day: Date,
+  day: {
+    type: mongoose.Schema.Types,
+    ref: 'Day.from'
+  },
   sender: String,
   sent: Boolean,
   number: String,

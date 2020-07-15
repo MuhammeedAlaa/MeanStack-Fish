@@ -20,7 +20,7 @@ admin.initializeApp({
   databaseURL: 'https://fish-94481.firebaseio.com'
 });
 
-exports.notify = async (users, orderId, title, body, icon) => {
+exports.notify = async (users, orderId, day, title, body, icon) => {
   for (let index = 0; index < users.length; index++) {
     const user = await Admin.findById(users[index]).select('+notification');
     const payload = {
@@ -40,12 +40,12 @@ exports.notify = async (users, orderId, title, body, icon) => {
 
     if (user.notification == undefined) {
       const notification = await Notification.create({
-        items: [{ ...payload, date: Date.now() }]
+        items: [{ ...payload, date: Date.now(), day: day }]
       });
       user.notification = notification._id;
     } else {
       const notification = await Notification.findById(user.notification);
-      notification.items.push({ ...payload, date: Date.now() });
+      notification.items.push({ ...payload, date: Date.now(), day: day });
       await notification.save({ validateBeforeSave: false });
     }
     /* istanbul ignore next */

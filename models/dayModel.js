@@ -13,6 +13,6 @@ const daySchema = new mongoose.Schema({
     }
   ]
 });
-const Day = mongoose.model('Days', daySchema);
+const Days = mongoose.model('Days', daySchema);
 
-exports.Day = Day;
+exports.Days = Days;

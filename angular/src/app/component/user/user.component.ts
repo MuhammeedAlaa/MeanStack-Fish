@@ -18,6 +18,15 @@ export class UserComponent implements OnInit {
   search: String;
   recipt: boolean = false;
   id: any;
+  private days = [
+    'اﻷحد',
+    'اﻷثنين',
+    'الثلاثاء',
+    'اﻷربعاء',
+    'الخميس',
+    'الجمعة',
+    'السبت'
+  ];
   constructor (
     private flashMessage: FlashMessagesService,
     private userService: UserService,
@@ -26,6 +35,17 @@ export class UserComponent implements OnInit {
     private route: ActivatedRoute,
     private datePipe: DatePipe
   ) {}
+  formatDate (date) {
+    var d = new Date(date),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [year, month, day].join('-');
+  }
 
   showSuccess () {
     this.flashMessage.show('Success', {
@@ -98,6 +118,8 @@ export class UserComponent implements OnInit {
         this.orders = [];
         let fishes = [];
         for (let i = 0; i < pages.length; i++) {
+          const ele1 = new Date(pages[i].day);
+          const ele = this.formatDate(pages[i].day);
           this.orders.push({
             name: pages[i].name,
             floor: pages[i].floor,
@@ -111,6 +133,8 @@ export class UserComponent implements OnInit {
             fishes: [],
             sender: pages[i].sender,
             sent: pages[i].sent,
+            day: pages[i].day,
+            d: this.days[ele1.getDay()] + ` (${ele})`,
             total: 0
           });
           fishes.push({
@@ -121,11 +145,12 @@ export class UserComponent implements OnInit {
             amount: pages[i].amount
           });
         }
-        for (let j = 0; j < this.orders.length - 1; j++) {
+        let j = 0;
+        while (j < this.orders.length - 1) {
           const order = this.orders[j];
           if (order._id == this.orders[j + 1]._id) {
             this.orders.splice(j, 1);
-          }
+          } else j++;
         }
         for (let k = 0; k < fishes.length; k++) {
           const fish = fishes[k];
@@ -149,6 +174,8 @@ export class UserComponent implements OnInit {
             this.user = this.orders[index];
           }
         }
+        console.log(this.orders);
+
         if (this.user) {
           this.recipt = true;
         }

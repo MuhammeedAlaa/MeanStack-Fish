@@ -1,0 +1,142 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col mt-3 mb-3 ml-9" *ngIf="!editRegion">
+      <button class="btn btn-success btn-block"
+        (click)="add = true;  startDay = endDay = undefined; placeholder = 'add';"><span
+          class="glyphicon glyphicon-plus">
+        </span>Add
+        more Days</button>
+    </div>
+    <div class="col float-right mt-3 mb-3 mr-50" *ngIf="!editRegion">
+      <button class="btn btn-danger btn-block" (click)="deleteDays()"><span class="glyphicon glyphicon-plus">
+        </span>Delete
+        all Days</button>
+    </div>
+    <div class="col mt-3 mb-3 ml-9" *ngIf="editRegion">
+      <button class="btn btn-success btn-block"
+        (click)="addRegion = true;  place = trans = undefined; placeholder = 'add';"><span
+          class="glyphicon glyphicon-plus">
+        </span>Add
+        more Regions</button>
+    </div>
+    <div class="col float-right mt-3 mb-3 mr-50" *ngIf="editRegion">
+      <button class="btn btn-danger btn-block" (click)="deleteRegions()"><span class="glyphicon glyphicon-plus">
+        </span>Delete
+        all Regions</button>
+    </div>
+
+  </div>
+
+  <div class="clearfix" *ngIf="!editRegion">
+    <input class="form-control" type="text" name="search" [(ngModel)]="search" autocomplete="off"
+      placeholder="&#61442;  Start searching for a start day by type or end day">
+  </div>
+
+  <div class="clearfix" *ngIf="!editRegion">
+    <table class="table mb-5 mt-5">
+      <caption>Days</caption>
+      <thead>
+        <tr>
+          <th scope="col">Start</th>
+          <th scope="col">end</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let day of daysData | filter:search">
+          <td scope="row">{{day.s}} </td>
+          <td scope="row">{{day.e}} </td>
+          <td scope="row">
+            <button class="btn btn-primary" (click)="edit = true; editDay(day);">Edit</button>
+          </td>
+          <td scope="row">
+            <button class="btn btn-primary" (click)="editRegion = true; editRegionData(day);">Regions</button>
+          </td>
+          <td scope="row">
+            <button class="btn btn-danger" (click)="deleteDay(day);">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="clearfix" *ngIf="editRegion">
+    <table class="table mb-5 mt-5">
+      <caption>Regions</caption>
+      <thead>
+        <tr>
+          <th scope="col">Place</th>
+          <th scope="col">Transports</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let region of regions | filter:search">
+          <td scope="row">{{region.place}} </td>
+          <td scope="row">{{region.trans}} </td>
+          <td scope="row">
+            <button class="btn btn-primary"
+              (click)="editRegionInfo = true; placeholder = 'edit'; RegionIdEdit(region._id)">Edit</button>
+          </td>
+          <td scope="row">
+            <button class="btn btn-danger" (click)="deleteRegion(region);">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <form class="form-group" *ngIf="edit || add">
+    <div class="form-group">
+      <label for="editSDay" id="labelsday">Start Day</label>
+      <input class="form-control" id="editSDay" type="date" name="sday" [(ngModel)]="startDay" required
+        placeholder="{{placeholder}} Start Day" autocomplete="off" />
+      <div class="form-alert alert alert-danger" *ngIf="!startDay">
+        Please enter start day
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="editEDay" id="labeleday">End Day</label>
+      <input class="form-control" id="editEDay" type="date" name="eday" [(ngModel)]="endDay" required
+        placeholder="{{placeholder}} End Day" autocomplete="off" />
+      <div class="form-alert alert alert-danger" *ngIf="!endDay">
+        Please enter end day
+      </div>
+    </div>
+    <button class="btn btn-primary mr-4" (click)="editSaveDay(); edit = false; add = false;"
+      [disabled]="!startDay || !endDay"> <i class="glyphicon glyphicon-pencil">
+      </i>Save
+      change </button>
+    <button class="btn btn-primary" (click)="edit = false; add = false;">
+      Cancel</button>
+  </form>
+
+
+  <form class="form-group" *ngIf="editRegionInfo || addRegion">
+    <div class="form-group" name="form">
+      <label for="editPlace" id="labelplace">Place</label>
+      <input class="form-control" id="editPlace" type="text" name="place" [(ngModel)]="place" required
+        placeholder="{{placeholder}} place" autocomplete="off" />
+      <div class="form-alert alert alert-danger" *ngIf="!place">
+        Please enter region place
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="editTransport" id="labeltransport">Transports</label>
+      <input class="form-control" id="editTransport" type="text" name="transport" [(ngModel)]="transports" required
+        placeholder="{{placeholder}} region transports" autocomplete="off" />
+      <div class="form-alert alert alert-danger" *ngIf="!transports">
+        Please enter region transports
+      </div>
+    </div>
+    <button class="btn btn-primary mr-4" (click)="eRegion();editRegionInfo=false;  addRegion = false;"
+      [disabled]="!transports || !place"> <i class="glyphicon glyphicon-pencil">
+      </i>Save
+      change </button>
+    <button class="btn btn-primary" (click)="addRegion = editRegionInfo = false;">
+      Cancel</button>
+  </form>
