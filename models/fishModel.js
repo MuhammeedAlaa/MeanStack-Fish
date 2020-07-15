@@ -18,6 +18,10 @@ const fishSchema = new mongoose.Schema({
   imgUrl: {
     type: String,
     default: 'images/users/default.png'
+  },
+  day: {
+    type: Schema.Types.Date,
+    ref: 'Day.from'
   }
 });
 const Fish = mongoose.model('Fishs', fishSchema);
