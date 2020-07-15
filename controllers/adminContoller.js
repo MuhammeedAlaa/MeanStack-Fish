@@ -2,6 +2,7 @@ const _ = require('lodash');
 const { Admin } = require('./../models/adminModel');
 const catchAsync = require('../utils/catchAsync');
 const APIFeatures = require('../utils/apiFeatures');
+const { Notification } = require('../models/notificationsModel');
 
 exports.admin = catchAsync(async (req, res, next) => {
   const api = new APIFeatures(Admin.find(), req.query)
@@ -28,4 +29,15 @@ exports.setRegistrationToken = catchAsync(async (req, res, next) => {
   admin.registraionToken = req.body.regToken;
   await admin.save({ validateBeforeSave: false });
   res.status(200).json({ admin });
+});
+
+exports.getNotificationsHistory = catchAsync(async (req, res, next) => {
+  const user = await Admin.findById(req.user._id).select('+notification');
+  if (user.notification === undefined) {
+    return next(
+      new AppError(`this user doesn't have notifications history`, 404)
+    );
+  }
+  const notifications = await Notification.findById(user.notification);
+  res.status(200).json({ notifications });
 });

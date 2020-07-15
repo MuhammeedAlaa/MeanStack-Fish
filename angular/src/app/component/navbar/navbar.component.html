@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Mazal El Khar</a>
+  <a class="navbar-brand" href="#">Mazal El Khair fil donia</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -24,6 +24,28 @@
       <a class="nav-link" *ngIf="!_authService.loggedIn()" routerLink="/login" routerLinkActive="active">Login</a>
       <h3 class="nav-label-active mr-4" style="color: #fff;" *ngIf="_authService.loggedIn()">
         {{ _authService.name() }}</h3>
+      <div *ngIf="_authService.loggedIn()">
+        <li class="dropdown">
+          <a class="nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span
+              class="glyphicon glyphicon-envelope">Notifications</span>
+          </a>
+          <ul class="dropdown-menu notify-drop">
+            <div class="drop-content">
+              <li *ngFor="let notification of notification">
+
+                <a class="container" routerLink='/users' [queryParams]="{id :notification.data.from}">
+                  <img src="{{notification.notification.icon}}" class="img-responsive" />
+                  <div class="textblock">
+                    <h4 style="text-align: center;">{{notification.notification.title}}</h4>
+                    <p style="text-align: center;">{{notification.notification.body}}</p>
+                    <p style="text-align: center;">{{notification.date}}</p>
+                  </div>
+                </a>
+              </li>
+            </div>
+          </ul>
+        </li>
+      </div>
       <a class="nav-link" *ngIf="_authService.loggedIn()" routerLink="/registration" routerLinkActive="active">Register
         new
         Admin</a>

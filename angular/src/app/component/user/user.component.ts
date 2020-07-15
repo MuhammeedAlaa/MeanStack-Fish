@@ -2,7 +2,7 @@ import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { AuthService } from 'src/app/services/auth.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import jspdf from 'jspdf';
 import html2canvas from 'html2canvas';
@@ -17,11 +17,13 @@ export class UserComponent implements OnInit {
   user: any;
   search: String;
   recipt: boolean = false;
+  id: any;
   constructor (
     private flashMessage: FlashMessagesService,
     private userService: UserService,
     private authService: AuthService,
     private router: Router,
+    private route: ActivatedRoute,
     private datePipe: DatePipe
   ) {}
 
@@ -69,15 +71,18 @@ export class UserComponent implements OnInit {
       window.location.href = '/users';
     });
   }
+
   ngOnInit (): void {
     if (!this.authService.loggedIn()) {
       this.router.navigate(['/home']);
     }
+
+    this.route.queryParams.subscribe(params => {
+      this.id = params['id'];
+    });
     if (localStorage.getItem('notificationToken') != undefined)
       this.authService.sendTokenToServer().subscribe(
-        data => {
-          console.log(data);
-        },
+        data => {},
         e => {
           this.showErrors(e.error.msg || e.error.message);
         }
@@ -140,6 +145,12 @@ export class UserComponent implements OnInit {
         for (let index = 0; index < this.orders.length; index++) {
           this.orders[index].total += parseInt(this.orders[index].transports);
           this.orders[index].data = this.datePipe.transform(new Date());
+          if (this.orders[index]._id == this.id) {
+            this.user = this.orders[index];
+          }
+        }
+        if (this.user) {
+          this.recipt = true;
         }
       },
       e => {

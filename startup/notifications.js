@@ -1,5 +1,6 @@
 const admin = require('firebase-admin');
 const { Admin } = require('../models/adminModel');
+const { Notification } = require('../models/notificationsModel');
 
 const fb = {
   type: process.env.TYPE,
@@ -19,13 +20,14 @@ admin.initializeApp({
   databaseURL: 'https://fish-94481.firebaseio.com'
 });
 
-exports.notify = async (users, title, body, icon) => {
+exports.notify = async (users, orderId, title, body, icon) => {
   for (let index = 0; index < users.length; index++) {
-    const user = await Admin.findById(users[index]);
+    const user = await Admin.findById(users[index]).select('+notification');
     const payload = {
       data: {
         data: JSON.stringify({
-          to: user._id
+          to: user._id,
+          from: orderId
         })
       },
       notification: {
@@ -35,11 +37,20 @@ exports.notify = async (users, title, body, icon) => {
         icon: icon
       }
     };
-    if (user.registraionToken) {
-      const s = await admin
-        .messaging()
-        .sendToDevice(user.registraionToken, payload);
-      console.log(s.results[0]);
+
+    if (user.notification == undefined) {
+      const notification = await Notification.create({
+        items: [{ ...payload, date: Date.now() }]
+      });
+      user.notification = notification._id;
+    } else {
+      const notification = await Notification.findById(user.notification);
+      notification.items.push({ ...payload, date: Date.now() });
+      await notification.save({ validateBeforeSave: false });
     }
+    /* istanbul ignore next */
+    if (user.registraionToken)
+      await admin.messaging().sendToDevice(user.registraionToken, payload);
+    await user.save({ validateBeforeSave: false });
   }
 };

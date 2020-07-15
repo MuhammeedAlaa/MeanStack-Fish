@@ -43,6 +43,8 @@ const orderSchema = new mongoose.Schema({
     minlength: 1,
     maxlength: 30
   },
+  day: Date,
+  noEditDay: Date,
   sender: String,
   sent: Boolean,
   number: String,

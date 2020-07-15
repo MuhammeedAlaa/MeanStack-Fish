@@ -58,6 +58,7 @@ exports.createOrder = catchAsync(async (req, res, next) => {
 
   await notify(
     ids,
+    order._id,
     'New Order',
     `${order.name} made or edit his order`,
     'assets/Notify.png'
@@ -86,6 +87,7 @@ exports.updateAddress = catchAsync(async (req, res, next) => {
 
   await notify(
     ids,
+    order._id,
     'Edit Address',
     `${order.name} has changed this address`,
     'assets/ChangeAdreess.png'
@@ -116,6 +118,7 @@ exports.deleteOrder = catchAsync(async (req, res, next) => {
 
   await notify(
     ids,
+    user._id,
     'Delete Order',
     `${user.name} has deleted this order`,
     'assets/DeleteOrder.png'

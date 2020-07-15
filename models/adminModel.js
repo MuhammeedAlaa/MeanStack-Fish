@@ -42,6 +42,11 @@ const adminSchema = new mongoose.Schema({
       message: 'the password and password confirmation must be the same'
     }
   },
+  notification: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Notification',
+    select: false
+  },
   imageUrl: String,
   phone: String,
   registraionToken: String

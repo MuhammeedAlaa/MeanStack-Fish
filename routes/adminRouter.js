@@ -14,5 +14,11 @@ router.patch(
 router.get('/admins', authController.protect, adminController.admin);
 router.post('/signup', authController.protect, authController.signup);
 router.patch('/updateMe', authController.protect, adminController.updateMe);
+// get the history of notifications
+router.get(
+  '/notifications',
+  authController.protect,
+  adminController.getNotificationsHistory
+);
 
 module.exports = router;

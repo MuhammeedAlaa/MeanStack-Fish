@@ -186,7 +186,7 @@ export class OrderComponent implements OnInit {
     document.getElementById('total').innerHTML = trans.toString();
     this.note = true;
     $(`#note`).text(
-      ' قيمة خدمة التوصليت الي ' + this.region + ' تساوي ' + trans
+      ' قيمة خدمة التوصيل الي ' + this.region + ' تساوي ' + trans
     );
     this.user.order.transports = trans;
     let sum = trans;
