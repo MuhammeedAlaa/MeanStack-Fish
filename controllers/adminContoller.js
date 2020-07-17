@@ -6,6 +6,7 @@ const { Notification } = require('../models/notificationsModel');
 const { Days } = require('./../models/dayModel');
 const { Fish } = require('./../models/fishModel');
 const { Order } = require('./../models/orderModel');
+const AppError = require('./../utils/appError');
 
 exports.admin = catchAsync(async (req, res, next) => {
   const api = new APIFeatures(Admin.find(), req.query)
@@ -37,8 +38,10 @@ exports.setRegistrationToken = catchAsync(async (req, res, next) => {
 exports.getNotificationsHistory = catchAsync(async (req, res, next) => {
   const user = await Admin.findById(req.user._id).select('+notification');
   if (user.notification === undefined) {
+    console.log(user);
+
     return next(
-      new AppError(`this user doesn't have notifications history`, 404)
+      new AppError("this user doesn't have notifications history", 404)
     );
   }
   const notifications = await Notification.findById(user.notification);
