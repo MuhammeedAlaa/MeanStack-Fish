@@ -18,6 +18,8 @@ const createSendToken = (user, statusCode, res) => {
 
 exports.signup = catchAsync(async (req, res, next) => {
   // validate with JOI as a first layer of validation
+  const file = req.file;
+  req.body = JSON.parse(req.body.user);
   await validate(
     _.pick(req.body, ['email', 'password', 'name', 'phone', 'passwordConfirm'])
   );
@@ -39,7 +41,7 @@ exports.signup = catchAsync(async (req, res, next) => {
       'phone',
       'passwordConfirm'
     ]),
-    imageUrl: `/images/users/default.png`
+    imageUrl: `/assets/${file.filename}`
   });
   createSendToken(newUser, 201, res);
 });

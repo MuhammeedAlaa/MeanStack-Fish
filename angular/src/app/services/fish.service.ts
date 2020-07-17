@@ -30,15 +30,11 @@ export class FishService {
       headers
     });
   }
-  editFish (editedFish) {
+  editFish (editedFish, id) {
     const headers = this.setAuthHeader();
-    return this.httpClient.patch(
-      `api/v1/fishes/${editedFish._id}`,
-      editedFish,
-      {
-        headers
-      }
-    );
+    return this.httpClient.patch(`api/v1/fishes/${id}`, editedFish, {
+      headers
+    });
   }
   deleteFish (deletedFish) {
     const headers = this.setAuthHeader();

@@ -20,7 +20,7 @@ export class NavbarComponent implements OnInit {
     public admin: AdminService,
     private datePipe: DatePipe
   ) {}
-  notification: any;
+  notification: any = [];
   ngOnInit (): void {
     this.name = localStorage.getItem('name');
     if (this._authService.loggedIn())
@@ -31,10 +31,9 @@ export class NavbarComponent implements OnInit {
             arr.push({ [key]: data[key] });
             return arr;
           });
-          if (this.notification[0][0].notifications != null) {
-            this.notification = [];
-          } else
+          if (this.notification[0][0].notifications != null)
             this.notification = this.notification[0][0].notifications.items;
+          else this.notification = [];
           for (let index = 0; index < this.notification.length; index++) {
             this.notification[index].data = JSON.parse(
               this.notification[index].data.data

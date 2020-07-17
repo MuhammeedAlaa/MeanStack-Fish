@@ -17,6 +17,7 @@ export class RegistrationComponent implements OnInit {
   phone: string;
   userPassword: string;
   data: any;
+  image: any;
 
   constructor (
     private validateService: ValidateService,
@@ -49,7 +50,9 @@ export class RegistrationComponent implements OnInit {
   }
 
   registerAdmin () {
-    const user = {
+    const formData = new FormData();
+    formData.append('file', this.image);
+    const user: any = {
       name: this.name,
       email: this.email,
       password: this.password,
@@ -57,6 +60,7 @@ export class RegistrationComponent implements OnInit {
       phone: this.phone,
       userPassword: this.userPassword
     };
+    formData.append('user', JSON.stringify(user));
 
     // Required fields
     if (!this.validateService.validateRegister(user)) {
@@ -95,7 +99,7 @@ export class RegistrationComponent implements OnInit {
     }
 
     // Register user
-    this.authService.sendRegistrationUserRequest(user).subscribe(
+    this.authService.sendRegistrationUserRequest(formData).subscribe(
       data => {
         this.data = data;
         this.showSuccess();
@@ -106,5 +110,11 @@ export class RegistrationComponent implements OnInit {
         this.router.navigate(['/registration']);
       }
     );
+  }
+  selectImage (event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.image = file;
+    }
   }
 }

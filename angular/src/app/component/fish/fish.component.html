@@ -39,7 +39,7 @@
           <td scope="row">{{fish.type}} </td>
           <td scope="row">{{fish.price}} </td>
           <td scope="row">{{fish.d}} </td>
-          <td><img src={{fish.img}} alt={{fish.type}} height="60" width="60"></td>
+          <td><img src={{fish.imgUrl}} alt={{fish.type}} width="100"></td>
           <td scope="row">
             <button class="btn btn-primary" (click)="edit = true; editFish(fish);">Edit</button>
           </td>
@@ -78,6 +78,12 @@
       <div class="form-alert alert alert-danger" *ngIf="!day">
         Please enter fish day
       </div>
+    </div>
+    <div class="custom-file mb-3">
+      <label for="inputGroupFile01" id="labeimage">Fish Image</label>
+      <input type="file" class="custom-file-input" id="inputGroupFile01" name="image"
+        aria-describedby="inputGroupFileAddon01" (change)="selectImage($event)">
+      <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
     </div>
     <button class="btn btn-primary mr-4" (click)="editSaveFish(); edit = false; add = false;"
       [disabled]="!type || !price">

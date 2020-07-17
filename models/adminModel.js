@@ -47,7 +47,7 @@ const adminSchema = new mongoose.Schema({
     ref: 'Notification',
     select: false
   },
-  imageUrl: String,
+  imageUrl: { type: String, default: '/assets/admins/default.jpg' },
   phone: String,
   registraionToken: String
 });

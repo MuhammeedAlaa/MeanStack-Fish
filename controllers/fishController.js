@@ -38,15 +38,23 @@ exports.deleteAllFish = catchAsync(async (req, res, next) => {
   });
 });
 exports.addFish = catchAsync(async (req, res, next) => {
+  const file = req.file;
+  req.body = JSON.parse(req.body.fish);
+
   const filteredBody = _.pick(req.body, ['price', 'type', 'day']);
-  if (req.file) filteredBody.imgUrl = req.file.filename;
+  if (req.file) filteredBody.imgUrl = '/assets/' + file.filename;
   const newFish = await Fish.create(filteredBody);
   res.status(200).json({
     newFish
   });
 });
 exports.updateFish = catchAsync(async (req, res, next) => {
+  const file = req.file;
+  req.body = JSON.parse(req.body.fish);
+
   const filteredBody = _.pick(req.body, ['type', 'price', 'day']);
+  if (req.file) filteredBody.imgUrl = '/assets/' + file.filename;
+
   const updatedFish = await Fish.findByIdAndUpdate(
     req.params.id,
     filteredBody,

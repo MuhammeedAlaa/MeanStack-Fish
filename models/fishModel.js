@@ -17,7 +17,7 @@ const fishSchema = new mongoose.Schema({
 
   imgUrl: {
     type: String,
-    default: 'images/users/default.png'
+    default: 'images/fishes/default.jpg'
   },
   day: {
     type: mongoose.Schema.Types,

@@ -21,6 +21,7 @@ export class FishComponent implements OnInit {
   search: String;
   day: Date;
   daysData: any;
+  image: any;
   public days = [
     'اﻷحد',
     'اﻷثنين',
@@ -104,7 +105,12 @@ export class FishComponent implements OnInit {
       timeout: 3000
     });
   }
-
+  selectImage (event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.image = file;
+    }
+  }
   async showErrors (errorMessage) {
     await this.flashMessage.show(errorMessage, {
       cssClass: 'alert-danger',
@@ -148,63 +154,63 @@ export class FishComponent implements OnInit {
   }
   editSaveFish () {
     if (this.edit) {
-      this.fishService
-        .editFish({
-          _id: this.fishId,
-          type: this.type,
-          price: this.price,
-          day: new Date(this.day)
-        })
-        .subscribe(
-          data => {
-            let s = JSON.stringify(data);
-            let edited = JSON.parse(
-              s.substring(s.indexOf('{"imgUrl"'), s.indexOf('}}') + 1)
-            );
-            this.fishId = edited._id;
-            for (let i = 0; i < this.fishes.length; i++) {
-              const fish = this.fishes[i];
-              if (fish._id == this.fishId) {
-                this.fishes[i].type = edited.type;
-                this.fishes[i].price = edited.price;
-                this.fishes[i].imgUrl = edited.imgUrl;
-              }
+      const formData = new FormData();
+      formData.append('file', this.image);
+      const fish = {
+        _id: this.fishId,
+        type: this.type,
+        price: this.price,
+        day: new Date(this.day)
+      };
+      formData.append('fish', JSON.stringify(fish));
+      this.fishService.editFish(formData, fish._id).subscribe(
+        data => {
+          let s = JSON.stringify(data);
+          let edited = JSON.parse(
+            s.substring(s.indexOf('{"imgUrl"'), s.indexOf('}}') + 1)
+          );
+          this.fishId = edited._id;
+          for (let i = 0; i < this.fishes.length; i++) {
+            const fish = this.fishes[i];
+            if (fish._id == this.fishId) {
+              this.fishes[i].type = edited.type;
+              this.fishes[i].price = edited.price;
+              this.fishes[i].imgUrl = edited.imgUrl;
             }
-            this.showSuccess();
-          },
-          error => {
-            this.showErrors(error.message || error.msg);
           }
-        );
+          this.showSuccess();
+        },
+        error => {
+          this.showErrors(error.message || error.msg);
+        }
+      );
     } else if (this.add) {
-      this.fishService
-        .addFish({
-          type: this.type,
-          price: this.price,
-          day: new Date(this.day)
-        })
-        .subscribe(
-          data => {
-            let s = JSON.stringify(data);
-            this.fishes.push(
-              JSON.parse(
-                s.substring(s.indexOf('{"imgUrl"'), s.indexOf('}}') + 1)
-              )
-            );
-            const ele1 = new Date(this.fishes[this.fishes.length - 1].day);
+      const formData = new FormData();
+      formData.append('file', this.image);
+      const fish = {
+        type: this.type,
+        price: this.price,
+        day: new Date(this.day)
+      };
+      formData.append('fish', JSON.stringify(fish));
+      this.fishService.addFish(formData).subscribe(
+        data => {
+          let s = JSON.stringify(data);
+          this.fishes.push(
+            JSON.parse(s.substring(s.indexOf('{"imgUrl"'), s.indexOf('}}') + 1))
+          );
+          const ele1 = new Date(this.fishes[this.fishes.length - 1].day);
 
-            const ele = this.formatDate(
-              this.fishes[this.fishes.length - 1].day
-            );
-            this.fishes[this.fishes.length - 1].d =
-              this.days[ele1.getDay()] + ` (${ele})`;
+          const ele = this.formatDate(this.fishes[this.fishes.length - 1].day);
+          this.fishes[this.fishes.length - 1].d =
+            this.days[ele1.getDay()] + ` (${ele})`;
 
-            this.showSuccess();
-          },
-          error => {
-            this.showErrors(error.message || error.msg);
-          }
-        );
+          this.showSuccess();
+        },
+        error => {
+          this.showErrors(error.message || error.msg);
+        }
+      );
     }
     this.edit = false;
     this.add = false;

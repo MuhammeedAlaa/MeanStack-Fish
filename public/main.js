@@ -503,7 +503,7 @@ class AdminComponent {
     }
 }
 AdminComponent.ɵfac = function AdminComponent_Factory(t) { return new (t || AdminComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](angular2_flash_messages__WEBPACK_IMPORTED_MODULE_2__["FlashMessagesService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](src_app_services_validate_service__WEBPACK_IMPORTED_MODULE_3__["ValidateService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](src_app_services_admin_service__WEBPACK_IMPORTED_MODULE_4__["AdminService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_5__["AuthService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"])); };
-AdminComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({ type: AdminComponent, selectors: [["app-admin"]], decls: 19, vars: 3, consts: [[1, "center"], [1, "clearfix"], [1, "table", "mb-5", "mt-5"], ["scope", "col"], [4, "ngFor", "ngForOf"], ["class", "btn btn-primary", 3, "click", 4, "ngIf"], ["class", "form-group", 4, "ngIf"], ["scope", "row"], [3, "src"], [1, "btn", "btn-primary", 3, "click"], [1, "form-group"], ["for", "editName", "id", "labelname"], ["id", "editName", "type", "text", "name", "name", "placeholder", "Edit Admin Name", "autocomplete", "off", 1, "form-control", 3, "ngModel", "ngModelChange"], ["for", "editEmail", "id", "labelemail"], ["id", "editEmail", "type", "text", "name", "email", "placeholder", "Edit Admin Email", "autocomplete", "off", 1, "form-control", 3, "ngModel", "ngModelChange"], ["for", "editPhone"], ["id", "editPhone", "type", "text", "name", "Phone", "placeholder", "Edit Student Phone", "required", "required", "minlength", "11", "maxlength", "11", 1, "form-control", 3, "ngModel", "ngModelChange"], [1, "btn", "btn-primary", "mr-4", 3, "click"], [1, "glyphicon", "glyphicon-pencil"]], template: function AdminComponent_Template(rf, ctx) { if (rf & 1) {
+AdminComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({ type: AdminComponent, selectors: [["app-admin"]], decls: 19, vars: 3, consts: [[1, "center"], [1, "clearfix"], [1, "table", "mb-5", "mt-5"], ["scope", "col"], [4, "ngFor", "ngForOf"], ["class", "btn btn-primary", 3, "click", 4, "ngIf"], ["class", "form-group", 4, "ngIf"], ["scope", "row"], ["width", "100", 3, "src"], [1, "btn", "btn-primary", 3, "click"], [1, "form-group"], ["for", "editName", "id", "labelname"], ["id", "editName", "type", "text", "name", "name", "placeholder", "Edit Admin Name", "autocomplete", "off", 1, "form-control", 3, "ngModel", "ngModelChange"], ["for", "editEmail", "id", "labelemail"], ["id", "editEmail", "type", "text", "name", "email", "placeholder", "Edit Admin Email", "autocomplete", "off", 1, "form-control", 3, "ngModel", "ngModelChange"], ["for", "editPhone"], ["id", "editPhone", "type", "text", "name", "Phone", "placeholder", "Edit Student Phone", "required", "required", "minlength", "11", "maxlength", "11", 1, "form-control", 3, "ngModel", "ngModelChange"], [1, "btn", "btn-primary", "mr-4", 3, "click"], [1, "glyphicon", "glyphicon-pencil"]], template: function AdminComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "div", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](2, "table", 2);
@@ -1385,16 +1385,16 @@ function FishComponent_tr_29_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"]("", fish_r2.d, " ");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpropertyInterpolate"]("src", fish_r2.img, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵsanitizeUrl"]);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpropertyInterpolate"]("src", fish_r2.imgUrl, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵsanitizeUrl"]);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpropertyInterpolate"]("alt", fish_r2.type);
 } }
 function FishComponent_form_31_div_5_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 29);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 33);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](1, " Please enter fish type ");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 } }
 function FishComponent_form_31_div_10_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 29);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 33);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](1, " Please enter fish price ");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 } }
@@ -1408,7 +1408,7 @@ function FishComponent_form_31_option_17_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"](" ", r_r10.fromDay, "");
 } }
 function FishComponent_form_31_div_18_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 29);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 33);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](1, " Please enter fish day ");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 } }
@@ -1446,14 +1446,25 @@ function FishComponent_form_31_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](18, FishComponent_form_31_div_18_Template, 2, 0, "div", 21);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](19, "button", 27);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function FishComponent_form_31_Template_button_click_19_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r12); const ctx_r15 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); ctx_r15.editSaveFish(); ctx_r15.edit = false; return ctx_r15.add = false; });
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](20, "i", 28);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](21, "Save change ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](19, "div", 27);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](20, "label", 28);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](21, "Fish Image");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](22, "button", 15);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function FishComponent_form_31_Template_button_click_22_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r12); const ctx_r16 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); ctx_r16.edit = false; return ctx_r16.add = false; });
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](23, " Cancel");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](22, "input", 29);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("change", function FishComponent_form_31_Template_input_change_22_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r12); const ctx_r15 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r15.selectImage($event); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](23, "label", 30);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](24, "Choose file");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](25, "button", 31);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function FishComponent_form_31_Template_button_click_25_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r12); const ctx_r16 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); ctx_r16.editSaveFish(); ctx_r16.edit = false; return ctx_r16.add = false; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](26, "i", 32);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](27, "Save change ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](28, "button", 15);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function FishComponent_form_31_Template_button_click_28_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r12); const ctx_r17 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); ctx_r17.edit = false; return ctx_r17.add = false; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](29, " Cancel");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 } if (rf & 2) {
@@ -1472,7 +1483,7 @@ function FishComponent_form_31_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngForOf", ctx_r1.daysData);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", !ctx_r1.day);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](7);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("disabled", !ctx_r1.type || !ctx_r1.price);
 } }
 class FishComponent {
@@ -1552,6 +1563,12 @@ class FishComponent {
             });
         });
     }
+    selectImage(event) {
+        if (event.target.files.length > 0) {
+            const file = event.target.files[0];
+            this.image = file;
+        }
+    }
     showErrors(errorMessage) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             yield this.flashMessage.show(errorMessage, {
@@ -1590,14 +1607,16 @@ class FishComponent {
     }
     editSaveFish() {
         if (this.edit) {
-            this.fishService
-                .editFish({
+            const formData = new FormData();
+            formData.append('file', this.image);
+            const fish = {
                 _id: this.fishId,
                 type: this.type,
                 price: this.price,
                 day: new Date(this.day)
-            })
-                .subscribe(data => {
+            };
+            formData.append('fish', JSON.stringify(fish));
+            this.fishService.editFish(formData, fish._id).subscribe(data => {
                 let s = JSON.stringify(data);
                 let edited = JSON.parse(s.substring(s.indexOf('{"imgUrl"'), s.indexOf('}}') + 1));
                 this.fishId = edited._id;
@@ -1615,13 +1634,15 @@ class FishComponent {
             });
         }
         else if (this.add) {
-            this.fishService
-                .addFish({
+            const formData = new FormData();
+            formData.append('file', this.image);
+            const fish = {
                 type: this.type,
                 price: this.price,
                 day: new Date(this.day)
-            })
-                .subscribe(data => {
+            };
+            formData.append('fish', JSON.stringify(fish));
+            this.fishService.addFish(formData).subscribe(data => {
                 let s = JSON.stringify(data);
                 this.fishes.push(JSON.parse(s.substring(s.indexOf('{"imgUrl"'), s.indexOf('}}') + 1)));
                 const ele1 = new Date(this.fishes[this.fishes.length - 1].day);
@@ -1638,7 +1659,7 @@ class FishComponent {
     }
 }
 FishComponent.ɵfac = function FishComponent_Factory(t) { return new (t || FishComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](angular2_flash_messages__WEBPACK_IMPORTED_MODULE_3__["FlashMessagesService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](src_app_services_fish_service__WEBPACK_IMPORTED_MODULE_4__["FishService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_5__["AuthService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](src_app_services_order_service__WEBPACK_IMPORTED_MODULE_7__["OrderService"])); };
-FishComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({ type: FishComponent, selectors: [["app-fish"]], decls: 32, vars: 6, consts: [[1, "container"], [1, "row"], [1, "col", "mt-3", "mb-3", "ml-9"], [1, "btn", "btn-success", "btn-block", 3, "click"], [1, "glyphicon", "glyphicon-plus"], [1, "col", "float-right", "mt-3", "mb-3", "mr-50"], [1, "btn", "btn-danger", "btn-block", 3, "click"], [1, "clearfix"], ["type", "text", "name", "search", "autocomplete", "off", "placeholder", "\uF002  Start searching for a fish by type or price", 1, "form-control", 3, "ngModel", "ngModelChange"], [1, "table", "mb-5", "mt-5"], ["scope", "col"], [4, "ngFor", "ngForOf"], ["class", "form-group", 4, "ngIf"], ["scope", "row"], ["height", "60", "width", "60", 3, "src", "alt"], [1, "btn", "btn-primary", 3, "click"], [1, "btn", "btn-danger", 3, "click"], [1, "form-group"], ["name", "form", 1, "form-group"], ["for", "editType", "id", "labeltype"], ["id", "editType", "type", "text", "name", "type", "required", "", "autocomplete", "off", 1, "form-control", 3, "ngModel", "placeholder", "ngModelChange"], ["class", "form-alert alert alert-danger", 4, "ngIf"], ["for", "editPrice", "id", "labelprice"], ["id", "editPrice", "type", "text", "name", "price", "required", "", "autocomplete", "off", 1, "form-control", 3, "ngModel", "placeholder", "ngModelChange"], ["for", "editDay", "id", "labelday"], ["id", "day", "name", "day", "id", "list", 1, "form-control", 3, "change"], ["value", ""], [1, "btn", "btn-primary", "mr-4", 3, "disabled", "click"], [1, "glyphicon", "glyphicon-pencil"], [1, "form-alert", "alert", "alert-danger"]], template: function FishComponent_Template(rf, ctx) { if (rf & 1) {
+FishComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({ type: FishComponent, selectors: [["app-fish"]], decls: 32, vars: 6, consts: [[1, "container"], [1, "row"], [1, "col", "mt-3", "mb-3", "ml-9"], [1, "btn", "btn-success", "btn-block", 3, "click"], [1, "glyphicon", "glyphicon-plus"], [1, "col", "float-right", "mt-3", "mb-3", "mr-50"], [1, "btn", "btn-danger", "btn-block", 3, "click"], [1, "clearfix"], ["type", "text", "name", "search", "autocomplete", "off", "placeholder", "\uF002  Start searching for a fish by type or price", 1, "form-control", 3, "ngModel", "ngModelChange"], [1, "table", "mb-5", "mt-5"], ["scope", "col"], [4, "ngFor", "ngForOf"], ["class", "form-group", 4, "ngIf"], ["scope", "row"], ["width", "100", 3, "src", "alt"], [1, "btn", "btn-primary", 3, "click"], [1, "btn", "btn-danger", 3, "click"], [1, "form-group"], ["name", "form", 1, "form-group"], ["for", "editType", "id", "labeltype"], ["id", "editType", "type", "text", "name", "type", "required", "", "autocomplete", "off", 1, "form-control", 3, "ngModel", "placeholder", "ngModelChange"], ["class", "form-alert alert alert-danger", 4, "ngIf"], ["for", "editPrice", "id", "labelprice"], ["id", "editPrice", "type", "text", "name", "price", "required", "", "autocomplete", "off", 1, "form-control", 3, "ngModel", "placeholder", "ngModelChange"], ["for", "editDay", "id", "labelday"], ["id", "day", "name", "day", "id", "list", 1, "form-control", 3, "change"], ["value", ""], [1, "custom-file", "mb-3"], ["for", "inputGroupFile01", "id", "labeimage"], ["type", "file", "id", "inputGroupFile01", "name", "image", "aria-describedby", "inputGroupFileAddon01", 1, "custom-file-input", 3, "change"], ["for", "inputGroupFile01", 1, "custom-file-label"], [1, "btn", "btn-primary", "mr-4", 3, "disabled", "click"], [1, "glyphicon", "glyphicon-pencil"], [1, "form-alert", "alert", "alert-danger"]], template: function FishComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "div", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](2, "div", 2);
@@ -1690,7 +1711,7 @@ FishComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComp
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](31, FishComponent_form_31_Template, 24, 9, "form", 12);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](31, FishComponent_form_31_Template, 30, 9, "form", 12);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     } if (rf & 2) {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](11);
@@ -2049,6 +2070,7 @@ class NavbarComponent {
         this._authService = _authService;
         this.admin = admin;
         this.datePipe = datePipe;
+        this.notification = [];
     }
     ngOnInit() {
         this.name = localStorage.getItem('name');
@@ -2059,11 +2081,10 @@ class NavbarComponent {
                     arr.push({ [key]: data[key] });
                     return arr;
                 });
-                if (this.notification[0][0].notifications != null) {
-                    this.notification = [];
-                }
-                else
+                if (this.notification[0][0].notifications != null)
                     this.notification = this.notification[0][0].notifications.items;
+                else
+                    this.notification = [];
                 for (let index = 0; index < this.notification.length; index++) {
                     this.notification[index].data = JSON.parse(this.notification[index].data.data);
                     this.notification[index].date = this.datePipe.transform(this.notification[index].date);
@@ -2872,6 +2893,8 @@ class RegistrationComponent {
         }
     }
     registerAdmin() {
+        const formData = new FormData();
+        formData.append('file', this.image);
         const user = {
             name: this.name,
             email: this.email,
@@ -2880,6 +2903,7 @@ class RegistrationComponent {
             phone: this.phone,
             userPassword: this.userPassword
         };
+        formData.append('user', JSON.stringify(user));
         // Required fields
         if (!this.validateService.validateRegister(user)) {
             this.showErrors('Please fill in all fields');
@@ -2906,7 +2930,7 @@ class RegistrationComponent {
             return false;
         }
         // Register user
-        this.authService.sendRegistrationUserRequest(user).subscribe(data => {
+        this.authService.sendRegistrationUserRequest(formData).subscribe(data => {
             this.data = data;
             this.showSuccess();
             this.router.navigate(['/']);
@@ -2915,9 +2939,15 @@ class RegistrationComponent {
             this.router.navigate(['/registration']);
         });
     }
+    selectImage(event) {
+        if (event.target.files.length > 0) {
+            const file = event.target.files[0];
+            this.image = file;
+        }
+    }
 }
 RegistrationComponent.ɵfac = function RegistrationComponent_Factory(t) { return new (t || RegistrationComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_services_validate_service__WEBPACK_IMPORTED_MODULE_1__["ValidateService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](angular2_flash_messages__WEBPACK_IMPORTED_MODULE_2__["FlashMessagesService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"])); };
-RegistrationComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: RegistrationComponent, selectors: [["app-registration"]], decls: 23, vars: 6, consts: [[1, "py-5"], [1, "row"], [1, "jumbotron", "col-md-6", "mx-auto", "bg-dark"], [1, "jumbotron", "bg-white"], [1, "card-header", "bg-white"], [1, "mb-0"], [1, "card-body", "bg-white"], [1, "form-group", 3, "submit"], [1, "form-group"], ["type", "email", "name", "email", "placeholder", "Email", 1, "form-control", 3, "ngModel", "ngModelChange"], ["type", "text", "name", "name", "placeholder", "Name", 1, "form-control", 3, "ngModel", "ngModelChange"], ["type", "text", "name", "phone", "placeholder", "Phone", 1, "form-control", 3, "ngModel", "ngModelChange"], ["type", "password", "name", "password", "placeholder", "Password", "required", "", 1, "form-control", 3, "ngModel", "ngModelChange"], ["type", "password", "name", "passwordConfirm", "placeholder", "PasswordConfirm", "required", "", 1, "form-control", 3, "ngModel", "ngModelChange"], ["type", "password", "name", "userpassword", "placeholder", "Your Password", "required", "", 1, "form-control", 3, "ngModel", "ngModelChange"], ["type", "submit", 1, "btn", "btn-success", "float-right"]], template: function RegistrationComponent_Template(rf, ctx) { if (rf & 1) {
+RegistrationComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: RegistrationComponent, selectors: [["app-registration"]], decls: 27, vars: 6, consts: [[1, "py-5"], [1, "row"], [1, "jumbotron", "col-md-6", "mx-auto", "bg-dark"], [1, "jumbotron", "bg-white"], [1, "card-header", "bg-white"], [1, "mb-0"], [1, "card-body", "bg-white"], [1, "form-group", 3, "submit"], [1, "form-group"], ["type", "email", "name", "email", "placeholder", "Email", 1, "form-control", 3, "ngModel", "ngModelChange"], ["type", "text", "name", "name", "placeholder", "Name", 1, "form-control", 3, "ngModel", "ngModelChange"], ["type", "text", "name", "phone", "placeholder", "Phone", 1, "form-control", 3, "ngModel", "ngModelChange"], ["type", "password", "name", "password", "placeholder", "Password", "required", "", 1, "form-control", 3, "ngModel", "ngModelChange"], ["type", "password", "name", "passwordConfirm", "placeholder", "PasswordConfirm", "required", "", 1, "form-control", 3, "ngModel", "ngModelChange"], ["type", "password", "name", "userpassword", "placeholder", "Your Password", "required", "", 1, "form-control", 3, "ngModel", "ngModelChange"], [1, "custom-file", "mb-3"], ["type", "file", "id", "inputGroupFile01", "name", "image", "aria-describedby", "inputGroupFileAddon01", 1, "custom-file-input", 3, "change"], ["for", "inputGroupFile01", 1, "custom-file-label"], ["type", "submit", 1, "btn", "btn-success", "float-right"]], template: function RegistrationComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div", 2);
@@ -2960,8 +2990,16 @@ RegistrationComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵde
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function RegistrationComponent_Template_input_ngModelChange_20_listener($event) { return ctx.userPassword = $event; });
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](21, "button", 15);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](22, "Add Admin");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](21, "div", 15);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](22, "input", 16);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("change", function RegistrationComponent_Template_input_change_22_listener($event) { return ctx.selectImage($event); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](23, "label", 17);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](24, "Choose file");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](25, "button", 18);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](26, "Add Admin");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -3685,9 +3723,9 @@ class FishService {
             headers
         });
     }
-    editFish(editedFish) {
+    editFish(editedFish, id) {
         const headers = this.setAuthHeader();
-        return this.httpClient.patch(`api/v1/fishes/${editedFish._id}`, editedFish, {
+        return this.httpClient.patch(`api/v1/fishes/${id}`, editedFish, {
             headers
         });
     }
