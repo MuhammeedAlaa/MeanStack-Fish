@@ -1,6 +1,7 @@
 const _ = require('lodash');
 const { Fish } = require('./../models/fishModel');
 const { Order } = require('./../models/orderModel');
+const { Notification } = require('./../models/notificationsModel');
 const catchAsync = require('./../utils/catchAsync');
 const APIFeatures = require('./../utils/apiFeatures');
 
@@ -31,6 +32,7 @@ exports.deleteFish = catchAsync(async (req, res, next) => {
 exports.deleteAllFish = catchAsync(async (req, res, next) => {
   await Fish.deleteMany();
   await Order.deleteMany();
+  await Notification.deleteMany();
   res.status(200).json({
     massages: 'deleted'
   });

@@ -31,7 +31,10 @@ export class NavbarComponent implements OnInit {
             arr.push({ [key]: data[key] });
             return arr;
           });
-          this.notification = this.notification[0][0].notifications.items;
+          if (this.notification[0][0].notifications != null) {
+            this.notification = [];
+          } else
+            this.notification = this.notification[0][0].notifications.items;
           for (let index = 0; index < this.notification.length; index++) {
             this.notification[index].data = JSON.parse(
               this.notification[index].data.data

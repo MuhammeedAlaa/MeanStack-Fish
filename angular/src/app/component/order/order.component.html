@@ -4,33 +4,35 @@
   <div class="row" *ngIf="!edit && !add;">
     <div class="col mt-3 mb-3 ml-9">
       <button class="btn btn-primary btn-block"
-        (click)="edit = true; placeholder = 'عدل'; dayObj = undefined; region = undefined;"><span
-          class="glyphicon glyphicon-plus">
-        </span>تعديل العنوان</button>
+        (click)="edit = true; placeholder = 'عدل'; dayObj = undefined; region = undefined;">
+        <span class="glyphicon glyphicon-plus"> </span>تعديل العنوان
+      </button>
     </div>
 
     <div class="col float-right mt-3 mb-3 mr-50" *ngIf="!send">
-      <button class="btn btn-success btn-block" id="sendOrder" (click)="sendOrder();"><span
-          class="glyphicon glyphicon-plus">
-        </span> ارسال الاوردر</button>
+      <button class="btn btn-success btn-block" id="sendOrder" (click)="sendOrder();">
+        <span class="glyphicon glyphicon-plus"> </span> ارسال الاوردر
+      </button>
     </div>
-
   </div>
   <div class="row" *ngIf="sent">
     <div class="col float-right mt-3 mb-3 mr-50">
-      <button class="btn btn-danger btn-block" (click)="deleteOrder();"><span class="glyphicon glyphicon-plus">
-        </span>الغاء الاوردر</button>
+      <button class="btn btn-danger btn-block" (click)="deleteOrder();">
+        <span class="glyphicon glyphicon-plus"> </span>الغاء الاوردر
+      </button>
     </div>
   </div>
 
   <div class="clearfix">
     <input class="form-control" type="text" name="search" [(ngModel)]="search" *ngIf="!edit && !add " autocomplete="off"
-      placeholder="&#61442;  ابدا البحث عن طريق النوع او السعر ">
+      placeholder="&#61442;  ابدا البحث عن طريق النوع او السعر " />
   </div>
 
   <div class="clearfix" *ngIf="!edit && !add">
     <table class="table mb-5 mt-5">
-      <caption>Fishes</caption>
+      <caption>
+        Fishes
+      </caption>
       <thead>
         <tr>
           <th scope="col">النوع</th>
@@ -42,14 +44,16 @@
       </thead>
       <tbody>
         <tr *ngFor="let fish of fishes | filter:search">
-          <td>{{fish.type}} </td>
-          <td>{{fish.price}} </td>
+          <td>{{fish.type}}</td>
+          <td>{{fish.price}}</td>
           <td>
-            <input min="0" class="form-control" type="number" id="{{fish._id}}" value="{{fish.amount}}"
-              (change)="updatePrice(fish)">
+            <input min="0" step="0.25" class="form-control" type="number" id="{{fish._id}}" value="{{fish.amount}}"
+              (change)="updatePrice(fish)" />
           </td>
-          <td> {{fish.amount * fish.price}} </td>
-          <td><img src={{fish.img}} alt={{fish.type}} height=" 60" width="60"></td>
+          <td>{{fish.amount * fish.price}}</td>
+          <td>
+            <img src="{{fish.img}}" alt="{{fish.type}}" height=" 60" width="60" />
+          </td>
         </tr>
         <tr>
           <td>السعر الكلي لطلب</td>
@@ -74,29 +78,26 @@
               <label for="editName" id="labelname">الاسم</label>
               <input class="form-control" id="editName" type="text" name="name" [(ngModel)]="name" required
                 placeholder="من فضلك {{placeholder}} الاسم" autocomplete="off" />
-              <div class="form-alert alert alert-danger" *ngIf="!name">لا يمكن
-                طلب اوردر بدون
-                الاسم
+              <div class="form-alert alert alert-danger" *ngIf="!name">
+                لا يمكن طلب اوردر بدون الاسم
               </div>
             </div>
             <div class="form-group">
               <label for="editPhone" id="labelphone">رقم الهاتف</label>
               <input class="form-control" id="editPhone" type="text" name="phone" [(ngModel)]="phone" required
                 placeholder="من فضلك {{placeholder}} رقم هاتفك" autocomplete="off" />
-              <div class="form-alert alert alert-danger" *ngIf="!phone">لا يمكن طلب اوردر بدون
-                رقم
-                الهاتف
+              <div class="form-alert alert alert-danger" *ngIf="!phone">
+                لا يمكن طلب اوردر بدون رقم الهاتف
               </div>
             </div>
             <div class="form-group">
               <label for="day">اليوم</label>
               <select class="form-control" id="day" name="day" (change)="setDay()">
                 <option value="">اختار يوم من هذه الايام</option>
-                <option *ngFor="let r of regions">
-                  {{r.fromDay}}</option>
+                <option *ngFor="let r of regions"> {{r.fromDay}}</option>
               </select>
-              <div class="form-alert alert alert-danger" *ngIf="!dayObj">لا يمكن طلب اوردر بدون
-                ادخال اليوم
+              <div class="form-alert alert alert-danger" *ngIf="!dayObj">
+                لا يمكن طلب اوردر بدون ادخال اليوم
               </div>
             </div>
             <div class="form-group" *ngIf="dayObj">
@@ -105,41 +106,38 @@
                 <option value="">اختار منطقة من هذه الايام</option>
                 <option *ngFor="let d of dayObj.region">{{d.place}}</option>
               </select>
-              <div class="form-alert alert alert-danger" *ngIf="!region">لا يمكن طلب اوردر
-                بدون
-                المنطقة
+              <div class="form-alert alert alert-danger" *ngIf="!region">
+                لا يمكن طلب اوردر بدون المنطقة
               </div>
             </div>
             <div class="form-group">
-              <label for="editBuilding" id="labelbuilding">رقم العماره</label>
+              <label for="editBuilding" id="labelbuilding">العنوان </label>
               <input class="form-control" id="editBuilding" type="text" name="building" [(ngModel)]="building" required
-                placeholder="من فضلك {{placeholder}} رقم العماره" autocomplete="off" />
-              <div class="form-alert alert alert-danger" *ngIf="!building">لا يمكن طلب اوردر
-                بدون رقم العمارة
+                placeholder="من فضلك {{placeholder}} العنوان" autocomplete="off" />
+              <div class="form-alert alert alert-danger" *ngIf="!building">
+                لا يمكن طلب اوردر بدون رقم العمارة
               </div>
             </div>
             <div class="form-group">
               <label for="editFloor" id="labelfloor">رقم الدور</label>
               <input class="form-control" id="editFloor" type="text" name="floor" [(ngModel)]="floor" required
                 placeholder="من فضلك {{placeholder}} رقم الدور" autocomplete="off" />
-              <div class="form-alert alert alert-danger" *ngIf="!floor">لا يمكن طلب اوردر بدون
-                رقم
-                الدور
+              <div class="form-alert alert alert-danger" *ngIf="!floor">
+                لا يمكن طلب اوردر بدون رقم الدور
               </div>
             </div>
             <div class="form-group">
               <label for="editAppartment" id="labelappartment">رقم الشقة</label>
               <input class="form-control" id="editAppartment" type="text" name="appartment" [(ngModel)]="appartment"
                 required placeholder="من فضلك {{placeholder}} رقم الشقة" autocomplete="off" />
-              <div class="form-alert alert alert-danger" *ngIf="!appartment">لا يمكن طلب
-                اوردر
-                بدون رقم
-                الشقة
+              <div class="form-alert alert alert-danger" *ngIf="!appartment">
+                لا يمكن طلب اوردر بدون رقم الشقة
               </div>
             </div>
             <button type="submit" class="btn btn-success float-right"
-              [disabled]="!name || !phone || !appartment || !region || !floor || !building || !dayObj">ادخل
-              العنوان</button>
+              [disabled]="!name || !phone || !appartment || !region || !floor || !building || !dayObj">
+              ادخل العنوان
+            </button>
           </form>
         </div>
       </div>

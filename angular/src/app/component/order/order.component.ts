@@ -172,12 +172,6 @@ export class OrderComponent implements OnInit {
       return false;
     }
 
-    // Validate building
-    if (!this.validateService.validateNumber(order.buildingNumber)) {
-      this.showErrors('من فضلك ادخل رقم العمارة بدون حروف');
-      return false;
-    }
-
     // Validate floor
     if (!this.validateService.validateNumber(order.floor)) {
       this.showErrors('من فضلك ادخل الدور بدون حروف');

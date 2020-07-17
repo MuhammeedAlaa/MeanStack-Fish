@@ -126,7 +126,7 @@ exports.deleteOrder = catchAsync(async (req, res, next) => {
 
   await notify(
     ids,
-    order.day,
+    user.day,
     user._id,
     'Delete Order',
     `${user.name} has deleted this order`,

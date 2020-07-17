@@ -31,7 +31,7 @@ exports.notify = async (users, orderId, day, title, body, icon) => {
         })
       },
       notification: {
-        title: title,
+        title: 'Mazal El Khair',
         body: body,
         sounds: 'default',
         icon: icon
