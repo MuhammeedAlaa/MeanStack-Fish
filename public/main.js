@@ -2089,12 +2089,18 @@ class NavbarComponent {
                     this.notification[index].data = JSON.parse(this.notification[index].data.data);
                     this.notification[index].date = this.datePipe.transform(this.notification[index].date);
                 }
-            }, error => {
-                this.flashMessage.show(error.message, {
-                    cssClass: 'alert-danger',
-                    timeout: 3000
-                });
+            }, e => {
+                this.showErrors(e.error.msg || e.error.message);
             });
+    }
+    showErrors(errorMessage) {
+        this.flashMessage.show(errorMessage, {
+            cssClass: 'alert-danger',
+            timeout: 6000
+        });
+        if (errorMessage == 'Your token has expired! Please log in again.') {
+            this._authService.logout();
+        }
     }
     onLogout() {
         this._authService.logout();

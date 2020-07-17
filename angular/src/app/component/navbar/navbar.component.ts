@@ -43,13 +43,19 @@ export class NavbarComponent implements OnInit {
             );
           }
         },
-        error => {
-          this.flashMessage.show(error.message, {
-            cssClass: 'alert-danger',
-            timeout: 3000
-          });
+        e => {
+          this.showErrors(e.error.msg || e.error.message);
         }
       );
+  }
+  showErrors (errorMessage) {
+    this.flashMessage.show(errorMessage, {
+      cssClass: 'alert-danger',
+      timeout: 6000
+    });
+    if (errorMessage == 'Your token has expired! Please log in again.') {
+      this._authService.logout();
+    }
   }
 
   onLogout () {
