@@ -17,6 +17,7 @@ export class AdminComponent implements OnInit {
   email: String;
   phone: String;
   userId: String;
+  image: any;
   constructor (
     private flashMessage: FlashMessagesService,
     private validateService: ValidateService,
@@ -55,11 +56,14 @@ export class AdminComponent implements OnInit {
     );
   }
   editUser () {
+    const formData = new FormData();
+    formData.append('file', this.image);
     const user = {
       name: this.name,
       phone: this.phone,
       email: this.email
     };
+    formData.append('user', JSON.stringify(user));
 
     // Required fields
     if (!this.validateService.validateEdit(user)) {
@@ -78,7 +82,7 @@ export class AdminComponent implements OnInit {
       return false;
     }
 
-    this.adminService.editAdmin(user).subscribe(
+    this.adminService.editAdmin(formData).subscribe(
       data => {
         let s = JSON.stringify(data);
         this.userId = s.substring(8, s.indexOf(',"email"') - 1);
@@ -98,5 +102,11 @@ export class AdminComponent implements OnInit {
         this.showErrors(error.message || error.msg);
       }
     );
+  }
+  selectImage (event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.image = file;
+    }
   }
 }

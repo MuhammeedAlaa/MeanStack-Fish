@@ -37,14 +37,17 @@ export class ValidateService {
     return passwordConfirm === password;
   }
   validatePhone (phone) {
-    return /^01[0-2][0-9]{8}$/.test(phone);
+    return (
+      /^01[0-2][0-9]{8}$/.test(phone) ||
+      /^٠١[\u0660-\u0662][\u0660-\u0669]{8}$/.test(phone)
+    );
   }
   validateName (name) {
-    return /^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z]+ +[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z-_]*$/.test(
+    return /^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z]+ [\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z]+ +[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z-_]*$/.test(
       name
     );
   }
   validateNumber (number) {
-    return /^\d+$/.test(number);
+    return /^\d+$/.test(number) || /^[\u0660-\u0669]{1,3}$/.test(number);
   }
 }

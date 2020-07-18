@@ -19,7 +19,11 @@ exports.admin = catchAsync(async (req, res, next) => {
 });
 
 exports.updateMe = catchAsync(async (req, res, next) => {
+  const file = req.file;
+  req.body = JSON.parse(req.body.user);
+
   const filteredBody = _.pick(req.body, ['email', 'name', 'phone']);
+  filteredBody.imageUrl = `/assets/${file.filename}`;
   // 3) Update user document
   const updatedUser = await Admin.findByIdAndUpdate(req.user.id, filteredBody, {
     new: true,

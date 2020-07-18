@@ -37,7 +37,12 @@ router.delete('/days/:id', authController.protect, adminController.deleteDay);
 router.delete('/days', authController.protect, adminController.deleteAllDays);
 router.patch('/days/:id', authController.protect, adminController.editDay);
 router.post('/days', authController.protect, adminController.insertDay);
-router.patch('/updateMe', authController.protect, adminController.updateMe);
+router.patch(
+  '/updateMe',
+  upload.single('file'),
+  authController.protect,
+  adminController.updateMe
+);
 // get the history of notifications
 router.get(
   '/notifications',
