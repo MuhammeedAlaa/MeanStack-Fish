@@ -19,39 +19,56 @@ export class FishService {
   }
   getFishes () {
     const headers = this.setAuthHeader();
-    let d = this.httpClient.get(`api/v1/fishes`, {
+    let d = this.httpClient.get(`${environment.REST_API_SERVER}api/v1/fishes`, {
       headers
     });
     return d;
   }
   addFish (newFish) {
     const headers = this.setAuthHeader();
-    return this.httpClient.post(`api/v1/fishes`, newFish, {
-      headers
-    });
+    return this.httpClient.post(
+      `${environment.REST_API_SERVER}api/v1/fishes`,
+      newFish,
+      {
+        headers
+      }
+    );
   }
   editFish (editedFish, id) {
     const headers = this.setAuthHeader();
-    return this.httpClient.patch(`api/v1/fishes/${id}`, editedFish, {
-      headers
-    });
+    return this.httpClient.patch(
+      `${environment.REST_API_SERVER}api/v1/fishes/${id}`,
+      editedFish,
+      {
+        headers
+      }
+    );
   }
   deleteFish (deletedFish) {
     const headers = this.setAuthHeader();
-    return this.httpClient.delete(`api/v1/fishes/${deletedFish._id}`, {
-      headers
-    });
+    return this.httpClient.delete(
+      `${environment.REST_API_SERVER}api/v1/fishes/${deletedFish._id}`,
+      {
+        headers
+      }
+    );
   }
   getAmounts () {
     const headers = this.setAuthHeader();
-    return this.httpClient.get(`api/v1/fishes/amounts`, {
-      headers
-    });
+    return this.httpClient.get(
+      `${environment.REST_API_SERVER}api/v1/fishes/amounts`,
+      {
+        headers
+      }
+    );
   }
   deleteFishes () {
     const headers = this.setAuthHeader();
-    return this.httpClient.delete(`api/v1/fishes`, {
-      headers
-    });
+    return this.httpClient.delete(
+      `${environment.REST_API_SERVER}api/v1/fishes`,
+      {
+        headers
+      }
+    );
   }
 }

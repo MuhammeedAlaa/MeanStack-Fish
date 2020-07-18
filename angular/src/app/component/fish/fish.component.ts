@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { FishService } from 'src/app/services/fish.service';
 import { OrderService } from 'src/app/services/order.service';
 import { Router } from '@angular/router';
+import { ValidateService } from 'src/app/services/validate.service';
 import * as $ from 'jquery';
 
 @Component({
@@ -17,7 +18,7 @@ export class FishComponent implements OnInit {
   add: boolean = false;
   type: String;
   fishId: String;
-  price: String;
+  price: string;
   search: String;
   day: Date;
   daysData: any;
@@ -37,7 +38,8 @@ export class FishComponent implements OnInit {
     private fishService: FishService,
     private authService: AuthService,
     private router: Router,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private validateService: ValidateService
   ) {}
   formatDate (date) {
     var d = new Date(date),
@@ -153,6 +155,10 @@ export class FishComponent implements OnInit {
     }
   }
   editSaveFish () {
+    if (!/^\d+$/.test(this.price)) {
+      this.showErrors('من فضلك ادخل سعر السمك باللغة الإنجليزية   ');
+      return false;
+    }
     if (this.edit) {
       const formData = new FormData();
       formData.append('file', this.image);

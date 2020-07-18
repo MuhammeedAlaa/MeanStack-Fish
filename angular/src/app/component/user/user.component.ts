@@ -85,7 +85,7 @@ export class UserComponent implements OnInit {
     html2canvas(element).then(canvas => {
       let img = canvas.toDataURL('image/png');
       let doc = new jspdf('p', 'mm', 'a4');
-      doc.addImage(img, 'PNG', 0, 10, 200, 350);
+      doc.addImage(img, 'PNG', 0, 10, 200, 300);
       doc.save(`recipt_${this.user.name}.pdf`);
       this.showSuccess();
       window.location.href = '/users';

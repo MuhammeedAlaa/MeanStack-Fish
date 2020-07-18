@@ -6,8 +6,6 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class AdminService {
-  private REST_API_SERVER = 'http://localhost:3000/';
-
   constructor (private httpClient: HttpClient) {}
   setAuthHeader () {
     let headers = new HttpHeaders();
@@ -19,35 +17,51 @@ export class AdminService {
   }
   getAdmins () {
     const headers = this.setAuthHeader();
-    return this.httpClient.get(`api/v1/users/admins`, {
-      headers
-    });
+    return this.httpClient.get(
+      `${environment.REST_API_SERVER}api/v1/users/admins`,
+      {
+        headers
+      }
+    );
   }
   getAdminNotifications () {
     const headers = this.setAuthHeader();
-    return this.httpClient.get(`api/v1/users/notifications`, {
-      headers
-    });
+    return this.httpClient.get(
+      `${environment.REST_API_SERVER}api/v1/users/notifications`,
+      {
+        headers
+      }
+    );
   }
   editAdmin (user) {
     const headers = this.setAuthHeader();
-    return this.httpClient.patch(`api/v1/users/updateMe`, user, {
-      headers
-    });
+    return this.httpClient.patch(
+      `${environment.REST_API_SERVER}api/v1/users/updateMe`,
+      user,
+      {
+        headers
+      }
+    );
   }
   getDays () {
-    return this.httpClient.get(`api/v1/orders/days`);
+    return this.httpClient.get(
+      `${environment.REST_API_SERVER}api/v1/orders/days`
+    );
   }
   addDay (newDay) {
     const headers = this.setAuthHeader();
-    return this.httpClient.post(`api/v1/users/days`, newDay, {
-      headers
-    });
+    return this.httpClient.post(
+      `${environment.REST_API_SERVER}api/v1/users/days`,
+      newDay,
+      {
+        headers
+      }
+    );
   }
   editDay (editedDay) {
     const headers = this.setAuthHeader();
     return this.httpClient.patch(
-      `api/v1/users/days/${editedDay._id}`,
+      `${environment.REST_API_SERVER}api/v1/users/days/${editedDay._id}`,
       editedDay,
       {
         headers
@@ -56,14 +70,20 @@ export class AdminService {
   }
   deleteDay (deletedDay) {
     const headers = this.setAuthHeader();
-    return this.httpClient.delete(`api/v1/users/days/${deletedDay._id}`, {
-      headers
-    });
+    return this.httpClient.delete(
+      `${environment.REST_API_SERVER}api/v1/users/days/${deletedDay._id}`,
+      {
+        headers
+      }
+    );
   }
   deleteDays () {
     const headers = this.setAuthHeader();
-    return this.httpClient.delete(`api/v1/users/days`, {
-      headers
-    });
+    return this.httpClient.delete(
+      `${environment.REST_API_SERVER}api/v1/users/days`,
+      {
+        headers
+      }
+    );
   }
 }
