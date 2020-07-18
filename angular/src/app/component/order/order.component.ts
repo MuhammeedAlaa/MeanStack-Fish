@@ -42,13 +42,26 @@ export class OrderComponent implements OnInit {
     'الجمعة',
     'السبت'
   ];
+  private numbers = new Map();
   constructor (
     private flashMessage: FlashMessagesService,
     private orderService: OrderService,
     private validateService: ValidateService,
     private router: Router,
     private authService: AuthService
-  ) {}
+  ) {
+    this.numbers.set('٠', '0');
+    this.numbers.set('١', '1');
+    this.numbers.set('٢', '2');
+    this.numbers.set('٣', '3');
+    this.numbers.set('٤', '4');
+    this.numbers.set('٥', '5');
+    this.numbers.set('٦', '6');
+    this.numbers.set('٧', '7');
+    this.numbers.set('٨', '8');
+    this.numbers.set('٩', '9');
+    this.numbers.set('٫', '.');
+  }
   formatDate (date) {
     var d = new Date(date),
       month = '' + (d.getMonth() + 1),
@@ -66,8 +79,6 @@ export class OrderComponent implements OnInit {
     }
     this.orderService.getDays().subscribe(
       data => {
-        console.log(data);
-
         let arr = [];
         this.regions = Object.keys(data).map(function (key) {
           arr.push({ [key]: data[key] });
@@ -209,10 +220,25 @@ export class OrderComponent implements OnInit {
       );
     }
   }
+  arabictonum (arabicnumstr) {
+    let num = '';
+    for (let i = 0; i < arabicnumstr.length; i++) {
+      console.log(this.numbers.get(arabicnumstr));
+
+      num += this.numbers.get(arabicnumstr[i]);
+    }
+    return num;
+  }
   sendOrder () {
     this.user.order.Fishes = [];
     for (var i = 0; i < this.fishes.length; i++) {
+      if (!this.validateService.validateNumber(this.fishes[i].amount)) {
+        this.showErrors('من فضلك ادخل الكمية بدون حروف باللغة الإنجليزية');
+        return false;
+      }
       if (this.fishes[i].amount > 0) {
+        if (/^[\u0660-\u0669]{1,}$/.test(this.fishes[i].amount))
+          this.fishes[i].amount = this.arabictonum(this.fishes[i].amount);
         this.user.order.Fishes.push({
           Fish: this.fishes[i]._id,
           amount: this.fishes[i].amount
@@ -257,11 +283,11 @@ export class OrderComponent implements OnInit {
       ' قيمة خدمة التوصيل الي ' + this.region + ' تساوي ' + this.trans
     );
     this.user.order.transports = this.trans;
-    let sum = parseInt(this.trans);
+    let sum = parseFloat(this.trans);
     for (let i = 0; i < this.fishes.length; i++) {
       sum += this.fishes[i].amount * this.fishes[i].price;
     }
-    if (sum == parseInt(this.trans)) {
+    if (sum == parseFloat(this.trans)) {
       document.getElementById('total').innerHTML = '0';
     } else {
       document.getElementById('total').innerHTML = sum.toString();

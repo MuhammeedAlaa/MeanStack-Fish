@@ -103,12 +103,14 @@ exports.getAmounts = catchAsync(async (req, res, next) => {
       const d = obj.id.toString();
       const id = obj.day.toString();
       if (key.id == d && key.day == id) {
-        amount += parseInt(obj.amount);
+        console.log(obj.amount);
+        amount += parseFloat(obj.amount);
       }
     });
     obj.amount = amount;
     result.push(obj);
   });
+  console.log(result);
   res.status(200).json({
     result
   });

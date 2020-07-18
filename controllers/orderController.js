@@ -51,7 +51,11 @@ exports.createOrder = catchAsync(async (req, res, next) => {
   order.transports = req.body.transports;
   order.Fishes = req.body.Fishes;
   const orders = await Order.find();
-  order.number = orders.length;
+  let number = 1;
+  orders.forEach(o => {
+    if (o.Fishes.length != 0) number++;
+  });
+  order.number = number;
   await order.save({ validateBeforeSave: false });
   const admins = await Admin.find();
   const ids = [];

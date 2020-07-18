@@ -20,14 +20,17 @@ export class UserService {
   }
   getOrders () {
     const headers = this.setAuthHeader();
-    return this.httpClient.get(`api/v1/orders/getorders`, {
-      headers
-    });
+    return this.httpClient.get(
+      `${this.REST_API_SERVER}api/v1/orders/getorders`,
+      {
+        headers
+      }
+    );
   }
   sendOrders (orderId) {
     const headers = this.setAuthHeader();
     return this.httpClient.patch(
-      `api/v1/orders/ordersent`,
+      `${this.REST_API_SERVER}api/v1/orders/ordersent`,
       { _id: orderId },
       { headers }
     );
