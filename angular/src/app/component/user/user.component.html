@@ -34,20 +34,21 @@
   margin-right: auto;display: block;" *ngIf="recipt" id="pdf">
   <div class="row align-items-center">
     <div class="well col-sm-12 h-100 d-table">
-      <div class="row">
-        <div class="col-xs-6 col-sm-6 col-md-6 text-left">
-          <address><strong>مازال الخير في الدنيا</strong><br /></address>
-          <abbr title="Phone">{{user.phone}}</abbr>
-          <p><em> رقم الشقة: {{user.appartmentNumber}}</em></p>
-          <p><em> الدور : {{user.floor}}</em></p>
-          <p><em> منطقة : {{user.region}}</em></p>
-        </div>
-        <div class="col-xs-6 col-sm-6 col-md-6 text-right">
-          <p><em>{{user.data}}</em></p>
-          <p><em>{{user.name}}</em></p>
-          <p><em> العنوان: {{user.buildingNumber}}</em></p>
-
-        </div>
+      <div style="clear: both;">
+        <address style="float: left;"><strong>مازال الخير في الدنيا</strong></address>
+        <p style="float: right;"><em>{{user.data}}</em></p><br />
+      </div>
+      <div style="clear: both;">
+        <p style="float: right;"><em>{{user.name}}</em></p>
+        <p style="float: left;"><em> رقم الشقة: {{user.appartmentNumber}}</em></p><br />
+      </div>
+      <div style="clear: both;">
+        <p style="float: right;"><em> العنوان: {{user.buildingNumber}}</em></p>
+        <p style="float: left;"><em> الدور : {{user.floor}}</em></p><br />
+      </div>
+      <div style="clear: both;">
+        <p style="float: right;"><em> منطقة : {{user.region}}</em></p>
+        <abbr title="Phone" style="float: left;">{{user.phone}}</abbr><br />
       </div>
       <div class="row">
         <div class="text-center">
