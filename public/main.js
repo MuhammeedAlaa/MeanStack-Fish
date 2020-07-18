@@ -3418,7 +3418,7 @@ class UserComponent {
         html2canvas__WEBPACK_IMPORTED_MODULE_3___default()(element).then(canvas => {
             let img = canvas.toDataURL('image/png');
             let doc = new jspdf__WEBPACK_IMPORTED_MODULE_2___default.a('p', 'mm', 'a4');
-            doc.addImage(img, 'PNG', 0, 0, 208, (canvas.height * 208) / canvas.height);
+            doc.addImage(img, 'PNG', 0, 10, 200, 350);
             doc.save(`recipt_${this.user.name}.pdf`);
             this.showSuccess();
             window.location.href = '/users';
