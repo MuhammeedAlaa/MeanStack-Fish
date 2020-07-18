@@ -19,46 +19,35 @@ export class AdminService {
   }
   getAdmins () {
     const headers = this.setAuthHeader();
-    return this.httpClient.get(`${this.REST_API_SERVER}api/v1/users/admins`, {
+    return this.httpClient.get(`api/v1/users/admins`, {
       headers
     });
   }
   getAdminNotifications () {
     const headers = this.setAuthHeader();
-    return this.httpClient.get(
-      `${this.REST_API_SERVER}api/v1/users/notifications`,
-      {
-        headers
-      }
-    );
+    return this.httpClient.get(`api/v1/users/notifications`, {
+      headers
+    });
   }
   editAdmin (user) {
     const headers = this.setAuthHeader();
-    return this.httpClient.patch(
-      `${this.REST_API_SERVER}api/v1/users/updateMe`,
-      user,
-      {
-        headers
-      }
-    );
+    return this.httpClient.patch(`api/v1/users/updateMe`, user, {
+      headers
+    });
   }
   getDays () {
-    return this.httpClient.get(`${this.REST_API_SERVER}api/v1/orders/days`);
+    return this.httpClient.get(`api/v1/orders/days`);
   }
   addDay (newDay) {
     const headers = this.setAuthHeader();
-    return this.httpClient.post(
-      `${this.REST_API_SERVER}api/v1/users/days`,
-      newDay,
-      {
-        headers
-      }
-    );
+    return this.httpClient.post(`api/v1/users/days`, newDay, {
+      headers
+    });
   }
   editDay (editedDay) {
     const headers = this.setAuthHeader();
     return this.httpClient.patch(
-      `${this.REST_API_SERVER}api/v1/users/days/${editedDay._id}`,
+      `api/v1/users/days/${editedDay._id}`,
       editedDay,
       {
         headers
@@ -67,16 +56,13 @@ export class AdminService {
   }
   deleteDay (deletedDay) {
     const headers = this.setAuthHeader();
-    return this.httpClient.delete(
-      `${this.REST_API_SERVER}api/v1/users/days/${deletedDay._id}`,
-      {
-        headers
-      }
-    );
+    return this.httpClient.delete(`api/v1/users/days/${deletedDay._id}`, {
+      headers
+    });
   }
   deleteDays () {
     const headers = this.setAuthHeader();
-    return this.httpClient.delete(`${this.REST_API_SERVER}api/v1/users/days`, {
+    return this.httpClient.delete(`api/v1/users/days`, {
       headers
     });
   }
