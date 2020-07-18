@@ -91,7 +91,7 @@ export class UserComponent implements OnInit {
         0,
         0,
         208,
-        (canvas.height * 208) / (canvas.height * 0.55)
+        (canvas.height * 208) / canvas.height
       );
       doc.save(`recipt_${this.user.name}.pdf`);
       this.showSuccess();
