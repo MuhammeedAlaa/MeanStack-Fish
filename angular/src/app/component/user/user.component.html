@@ -30,25 +30,25 @@
   </div>
 </div>
 <!------ Include the above in your HEAD tag ---------->
-<div class="container mt-5 center" style="margin-left: auto;
-  margin-right: auto;display: block;" *ngIf="recipt" id="pdf">
+<div id="pdf" class="container mt-5 center" style="margin-left: auto;
+  margin-right: auto;display: block;" *ngIf="recipt">
   <div class="row align-items-center">
     <div class="well col-sm-12 h-100 d-table">
       <div style="clear: both;">
         <address style="float: left;"><strong>مازال الخير في الدنيا</strong></address>
-        <p style="float: right;"><em>{{user.data}}</em></p><br />
+        <p class="text-align text-right"><em>{{user.data}}</em></p>
       </div>
       <div style="clear: both;">
-        <p style="float: right;"><em>{{user.name}}</em></p>
-        <p style="float: left;"><em> رقم الشقة {{user.appartmentNumber}}</em></p><br />
+        <p style="float: left;"><em>{{user.name}}</em></p>
+        <p class="text-align text-right"><em> رقم الشقة : {{user.appartmentNumber}}</em></p>
       </div>
       <div style="clear: both;">
-        <p style="float: right;"><em> العنوان {{user.buildingNumber}}</em></p>
-        <p style="float: left;"><em> الدور {{user.floor}}</em></p><br />
+        <p style="float: left;"><em> العنوان : {{user.buildingNumber}}</em></p>
+        <p class="text-align text-right"><em> الدور : {{user.floor}}</em></p>
       </div>
       <div style="clear: both;">
-        <p style="float: right;"><em> منطقة {{user.region}}</em></p>
-        <abbr title="Phone" style="float: left;">{{user.phone}}</abbr><br />
+        <p style="float: left;"><em> منطقة : {{user.region}}</em></p>
+        <p class="text-align text-right"><em>{{user.phone}}</em></p> <br />
       </div>
       <div class="row">
         <div class="text-center">
