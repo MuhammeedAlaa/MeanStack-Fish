@@ -174,8 +174,24 @@ exports.getAllUsers = catchAsync(async (req, res, next) => {
   for (let order_index = 0; order_index < page.length; order_index++) {
     const element = page[order_index].fishId;
     const fish = await Fish.findById(element);
-    page[order_index].price = fish.price;
-    page[order_index].type = fish.type;
+    if (fish) {
+      page[order_index].price = fish.price;
+      page[order_index].type = fish.type;
+    } else {
+      await Order.update(
+        { _id: page[order_index].id },
+        {
+          $pull: {
+            Fishes: {
+              Fish: page[order_index].fishId,
+              amount: page[order_index].amount
+            }
+          }
+        }
+      );
+      page.splice(order_index, 1);
+      order_index--;
+    }
   }
 
   return res.status(200).json({
