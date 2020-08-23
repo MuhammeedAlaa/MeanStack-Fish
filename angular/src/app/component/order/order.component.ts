@@ -232,10 +232,6 @@ export class OrderComponent implements OnInit {
   sendOrder () {
     this.user.order.Fishes = [];
     for (var i = 0; i < this.fishes.length; i++) {
-      if (!this.validateService.validateNumber(this.fishes[i].amount)) {
-        this.showErrors('من فضلك ادخل الكمية بدون حروف باللغة الإنجليزية');
-        return false;
-      }
       if (this.fishes[i].amount > 0) {
         if (/^[\u0660-\u0669]{1,}$/.test(this.fishes[i].amount))
           this.fishes[i].amount = this.arabictonum(this.fishes[i].amount);
