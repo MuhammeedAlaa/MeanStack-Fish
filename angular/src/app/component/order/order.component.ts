@@ -173,7 +173,7 @@ export class OrderComponent implements OnInit {
     };
     // Validate name
     if (!this.validateService.validateName(order.name)) {
-      this.showErrors('من فضلك ادخل اسمك ثلاثي بدون ارقام');
+      this.showErrors('من فضلك ادخل اسمك ثنائي بدون ارقام');
       return false;
     }
 
